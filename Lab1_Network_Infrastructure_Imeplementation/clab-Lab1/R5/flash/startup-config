@@ -1,9 +1,9 @@
-! Startup-config last modified at Mon Sep  9 00:38:57 2024 by admin
+! Startup-config last modified at Thu Sep 12 23:14:44 2024 by root
 ! device: R5 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$yOT4DJ3yrtjcLqog$FJFJfwiEUrSJS2.xZlsnKUAcDyBMQcuATh5a0d9rnR1j8DNFLEQDuPjvoGaZ461wn2T/Kzgq2utXn65VGHenR.
+username admin role network-admin secret sha512 $6$ehPiXNBTEcS9I2zi$NnH3PFiEG3lrykbzfZ/x6BLsdU6Yi/NiAvoxkLYvBNO8HazuuYyn6GkmZg7RNerOyT1vRHwJ1mvelm.nYMtR2.
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -17,41 +17,47 @@ system l1
    unsupported speed action error
    unsupported error-correction action error
 !
-management api http-commands
-   no shutdown
-!
-management api gnmi
-   transport grpc default
-!
-management api netconf
-   transport ssh default
-!
 interface Ethernet1
    no switchport
    ip address 10.40.0.2/30
+   ipv6 address 2402::2/64
 !
 interface Ethernet2
    no switchport
    ip address 10.40.0.5/30
+   ipv6 address 2403::2/64
 !
 interface Ethernet3
+   no switchport
+   ip address 1.1.1.1/30
+   ipv6 address 2404::1/64
 !
 interface Loopback0
    ip address 10.40.5.1/32
 !
 interface Management0
-   ip address 172.20.20.20/24
-   ipv6 address 2001:172:20:20::14/64
+   ip address 172.20.20.18/24
+   ipv6 address 2001:172:20:20::12/64
 !
 ip routing
 !
-ip route 0.0.0.0/0 172.20.20.1
-!
-ipv6 route ::/0 2001:172:20:20::1
+ipv6 unicast-routing
 !
 router bgp 65005
-   neighbor 10.40.0.3 remote-as 65003
-   neighbor 10.40.0.6 remote-as 65004
-   network 10.40.5.0/24
+   router-id 10.40.5.1
+   maximum-paths 2
+   neighbor 10.40.0.1 remote-as 65001
+   neighbor 10.40.0.6 remote-as 65001
+   neighbor 2402::1 remote-as 65001
+   neighbor 2403::1 remote-as 65001
+   !
+   address-family ipv4
+      network 1.1.1.0/30
+      network 10.40.5.1/32
+   !
+   address-family ipv6
+      neighbor 2402::1 activate
+      neighbor 2403::1 activate
+      network 2404::/64
 !
 end

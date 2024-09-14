@@ -6,45 +6,54 @@ topology:
     R1:
       kind: arista_ceos
       image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/r1.cfg
     R2:
       kind: arista_ceos
       image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/r2.cfg
     R3:
       kind: arista_ceos
       image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/r3.cfg
     R4:
       kind: arista_ceos
       image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/r4.cfg
     R5:
       kind: arista_ceos
       image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/r5.cfg
     S1:
       kind: arista_ceos
       image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/s1.cfg
     S2:
       kind: arista_ceos
       image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/s2.cfg
     S3:
       kind: arista_ceos
       image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/s3.cfg
     S4:
       kind: arista_ceos
       image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/s4.cfg
     Web_Server:
       kind: linux
-      image: myubuntu
+      image: myubuntu2
     H1:
       kind: linux
-      image: myubuntu
+      image: myubuntu2
     H2:
       kind: linux
-      image: myubuntu
+      image: myubuntu2
     H3:
       kind: linux
-      image: myubuntu
+      image: myubuntu2
     H4:
       kind: linux
-      image: myubuntu
+      image: myubuntu2
     
 
   links:

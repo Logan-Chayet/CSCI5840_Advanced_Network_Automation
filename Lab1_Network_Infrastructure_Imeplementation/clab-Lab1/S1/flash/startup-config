@@ -1,9 +1,9 @@
-! Startup-config last modified at Sun Sep  8 20:57:34 2024 by root
+! Startup-config last modified at Thu Sep 12 23:14:39 2024 by root
 ! device: S1 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$JZ4bSVdkoiFttAyL$5x0rZkHEw7qXage/HQH5Ff.egULYF.0Y2JQ5a4Ogu8ubCnfv5XbZppBjZtE6YXpzdyY.qr9FXhVnwrEnCEooR1
+username admin role network-admin secret sha512 $6$I2KJf.cpqPkRIHZu$n0HoDu47hWj4saEm.9JEJ6Vz9nEWKY3k7.s7MN9TSQ4JIpZCuoU.vmcROKmCP0U3330dcG2etfWhpLc6HGUtM0
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -17,31 +17,37 @@ system l1
    unsupported speed action error
    unsupported error-correction action error
 !
-management api http-commands
-   no shutdown
+vlan 10
+   name HOST_10
 !
-management api gnmi
-   transport grpc default
+vlan 20
+   name HOST_20
 !
-management api netconf
-   transport ssh default
+vlan 30
+   name HOST_30
+!
+vlan 200
+   name MGMT
 !
 interface Ethernet1
+   switchport mode trunk
 !
 interface Ethernet2
+   switchport mode trunk
 !
 interface Ethernet3
+   switchport access vlan 10
 !
 interface Ethernet4
+   switchport access vlan 20
 !
 interface Management0
-   ip address 172.20.20.13/24
-   ipv6 address 2001:172:20:20::d/64
+   ip address 172.20.20.19/24
+   ipv6 address 2001:172:20:20::13/64
+!
+interface Vlan200
+   ip address 10.200.0.1/24
 !
 no ip routing
-!
-ip route 0.0.0.0/0 172.20.20.1
-!
-ipv6 route ::/0 2001:172:20:20::1
 !
 end

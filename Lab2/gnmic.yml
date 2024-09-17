@@ -1,0 +1,40 @@
+username: admin
+password: admin
+insecure: true
+
+targets:
+  R1:
+    address: 10.100.0.6:6030
+  R2:
+    address: 10.100.0.7:6030
+  R3:
+    address: 10.100.0.8:6030
+  R4:
+    address: 10.100.0.9:6030
+  S3:
+    address: 10.100.0.3:6030
+  S4:
+    address: 10.100.0.4:6030
+  S1:
+    address: 10.200.0.1:6030
+  S2:
+    address: 10.200.0.2:6030
+
+subscriptions:
+  interface-counters:
+    paths:
+      - /interfaces/interface/state/oper-status
+      - /components/component/cpu/utilization/state/instant
+    sample-interval: 10s
+
+outputs:
+  influxdb:
+    type: influxdb
+    url: http://localhost:8086
+    org: boulder
+    bucket: netman
+    token: NzDeX6UuoJRiSbcpy7BBKeqzecFC9ennIzHsiOVkUpVoAfmbKt3B6SYfbcL2dwxGjzuO_xEu5-NFLOJqgKGmzQ==
+    override-timestamps: false
+    timestamp-precision: s
+    health-check-period: 30s
+    debug: true

@@ -2,6 +2,9 @@ NMAS:
 sudo ip route add 10.200.0.0/24 via 10.100.0.6 dev CR_e1-1 onlink
 sudo ip addr add 10.100.0.5/24 dev CR_e1-1
 
+10.100.0.0/24 dev CR_e1-1 proto kernel scope link src 10.100.0.5
+10.200.0.0/24 via 10.100.0.6 dev CR_e1-1 onlink
+
 
 Host1-4:
 dhclient

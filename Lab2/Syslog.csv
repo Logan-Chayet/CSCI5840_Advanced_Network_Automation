@@ -1,0 +1,24 @@
+24,R3,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to down"
+25,R3,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to down"
+26,R4,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to down"
+27,R4,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to down"
+30,R3,BGP-5-ADJCHANGE: peer 10.40.0.10 (VRF default AS 65001) old state Established event Stop new state Idle
+31,R3,BGP-5-ADJCHANGE: peer 10.40.0.10 (VRF default AS 65001) old state Established event Stop new state Idle
+32,R4,BGP-5-ADJCHANGE: peer 10.40.0.9 (VRF default AS 65001) old state Established event Stop new state Idle
+33,R4,BGP-5-ADJCHANGE: peer 10.40.0.9 (VRF default AS 65001) old state Established event Stop new state Idle
+55,R3,BGP-5-ADJCHANGE: peer 2401::2 (VRF default AS 65001) old state Established event Stop new state Idle
+56,R3,BGP-5-ADJCHANGE: peer 2401::2 (VRF default AS 65001) old state Established event Stop new state Idle
+57,R4,BGP-5-ADJCHANGE: peer 2401::1 (VRF default AS 65001) old state Established event Stop new state Idle
+58,R4,BGP-5-ADJCHANGE: peer 2401::1 (VRF default AS 65001) old state Established event Stop new state Idle
+99,R4,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to up"
+102,R3,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to up"
+103,R3,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to up"
+111,R3,BGP-5-ADJCHANGE: peer 10.40.0.10 (VRF default AS 65001) old state OpenConfirm event Established new state Established
+112,R3,BGP-5-ADJCHANGE: peer 10.40.0.10 (VRF default AS 65001) old state OpenConfirm event Established new state Established
+113,R4,BGP-5-ADJCHANGE: peer 10.40.0.9 (VRF default AS 65001) old state OpenConfirm event Established new state Established
+114,R4,BGP-5-ADJCHANGE: peer 10.40.0.9 (VRF default AS 65001) old state OpenConfirm event Established new state Established
+123,R4,"LLDP-5-NEIGHBOR_NEW: LLDP neighbor with chassisId 001c.73a1.f6f1 and portId ""Ethernet1"" added on interface Ethernet1"
+124,R4,"LLDP-5-NEIGHBOR_NEW: LLDP neighbor with chassisId 001c.73a1.f6f1 and portId ""Ethernet1"" added on interface Ethernet1"
+128,R3,"LLDP-5-NEIGHBOR_NEW: LLDP neighbor with chassisId 001c.739b.1a92 and portId ""Ethernet1"" added on interface Ethernet1"
+129,R3,BGP-5-ADJCHANGE: peer 2401::2 (VRF default AS 65001) old state OpenConfirm event Established new state Established
+130,R4,BGP-5-ADJCHANGE: peer 2401::1 (VRF default AS 65001) old state OpenConfirm event Established new state Established

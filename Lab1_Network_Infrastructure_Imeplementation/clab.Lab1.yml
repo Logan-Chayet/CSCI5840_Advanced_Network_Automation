@@ -41,20 +41,39 @@ topology:
       startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/s4.cfg
     Web_Server:
       kind: linux
-      image: myubuntu2
+      image: myubuntu
+      exec:
+        - ifconfig eth1 1.1.1.2 netmask 255.255.255.252
+        - ip -6 addr add 2404::2/64 dev eth1 
     H1:
       kind: linux
-      image: myubuntu2
+      image: myubuntu
+      exec:
+        - dhclient eth1
+        - dhclient -6 eth1
+        - ip route del default
+        - ip route add default via 21.0.0.1 dev eth1 onlink
     H2:
       kind: linux
-      image: myubuntu2
+      image: myubuntu
+      exec:
+        - dhclient eth1
+        - dhclient -6 eth1
+        - ip route del default
+        - ip route add default via 22.0.0.1 dev eth1 onlink
     H3:
       kind: linux
-      image: myubuntu2
+      image: myubuntu
+      exec:
+        - dhclient eth1
+        - dhclient -6 eth1
+        - ip route del default
+        - ip route add default via 21.0.0.1 dev eth1 onlink
     H4:
       kind: linux
-      image: myubuntu2
-    
+      image: myubuntu
+      exec:
+        - dhclient -6 eth1 
 
   links:
     - endpoints: ["R1:eth1", "S1:eth1"]

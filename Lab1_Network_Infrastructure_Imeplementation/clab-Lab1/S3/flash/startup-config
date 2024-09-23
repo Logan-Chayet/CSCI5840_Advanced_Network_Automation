@@ -1,15 +1,20 @@
-! Startup-config last modified at Thu Sep 12 23:14:45 2024 by root
+! Startup-config last modified at Mon Sep 23 01:30:15 2024 by root
 ! device: S3 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
 !
 no aaa root
 !
-username admin role network-admin secret sha512 $6$C5KYGw2YH03F8B3u$FHO2/wAA.k1zNTMt51HqJr02T9ijOfL9iJWG5C0fH5Oinq5GhUk2ZAN5gmiw7nbMLW6w8Ta6UT.EwwVbdCABg/
+username admin role network-admin secret sha512 $6$JIFRvxgGCUrDNOf4$hnE2LXKbu.N5IUCJ5xggpnGyzj9ZWnFHAs2fCb.MCC4msIO8l.XMu.adQjY5gTifEq/.507PXbMePnetn8Zid/
 !
 transceiver qsfp default-mode 4x10G
 !
 service routing protocols model multi-agent
 !
+logging host 10.100.0.5
+!
 hostname S3
+!
+snmp-server community NMAS ro
+snmp-server host 10.100.0.5 version 2c NMAS
 !
 spanning-tree mode mstp
 !
@@ -19,6 +24,12 @@ system l1
 !
 vlan 40,100
    name PROD
+!
+management api gnmi
+   transport grpc def
+!
+management api netconf
+   transport ssh def
 !
 interface Ethernet1
    switchport mode trunk

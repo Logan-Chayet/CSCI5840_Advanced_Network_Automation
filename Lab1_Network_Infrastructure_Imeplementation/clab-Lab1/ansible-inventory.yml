@@ -12,32 +12,32 @@ all:
         ansible_password: admin
       hosts:
         clab-Lab1-R1:
-          ansible_host: 172.20.20.7
+          ansible_host: 172.20.20.9
         clab-Lab1-R2:
-          ansible_host: 172.20.20.13
+          ansible_host: 172.20.20.11
         clab-Lab1-R3:
-          ansible_host: 172.20.20.12
+          ansible_host: 172.20.20.3
         clab-Lab1-R4:
-          ansible_host: 172.20.20.21
+          ansible_host: 172.20.20.6
         clab-Lab1-R5:
-          ansible_host: 172.20.20.18
+          ansible_host: 172.20.20.12
         clab-Lab1-S1:
-          ansible_host: 172.20.20.19
+          ansible_host: 172.20.20.8
         clab-Lab1-S2:
-          ansible_host: 172.20.20.16
+          ansible_host: 172.20.20.15
         clab-Lab1-S3:
           ansible_host: 172.20.20.14
         clab-Lab1-S4:
-          ansible_host: 172.20.20.10
+          ansible_host: 172.20.20.2
     linux:
       hosts:
         clab-Lab1-H1:
-          ansible_host: 172.20.20.22
+          ansible_host: 172.20.20.10
         clab-Lab1-H2:
-          ansible_host: 172.20.20.15
+          ansible_host: 172.20.20.7
         clab-Lab1-H3:
-          ansible_host: 172.20.20.17
+          ansible_host: 172.20.20.13
         clab-Lab1-H4:
-          ansible_host: 172.20.20.11
+          ansible_host: 172.20.20.4
         clab-Lab1-Web_Server:
-          ansible_host: 172.20.20.20
+          ansible_host: 172.20.20.5

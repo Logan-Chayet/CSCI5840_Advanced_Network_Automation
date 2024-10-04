@@ -1,0 +1,38 @@
+{% for interface in devices.interfaces %}
+interface {{ interface.name }}
+{% if interface.sub_intf %}
+   encapsulation dot1q vlan {{ interface.vlan }}
+{% endif %}
+   ip address {{ interface.ip_address }}
+   ipv6 address {{ interface.ipv6_address }}
+{% if devices.ospf.enabled %}
+   ipv6 ospf {{ devices.ospf.ospf_process }} area {{ devices.ospf.ospf_area }}
+{% endif %}
+!
+{% endfor %}
+ip routing
+!
+ipv6 unicast-routing
+!
+{% if devices.rip.enabled %}
+router rip
+{% for network in devices.rip.networks %}
+   network {{ network.network }}
+{% endfor %}
+   no shutdown
+{% endif %}
+
+{% if devices.ospf.enabled %}
+router ospf {{ devices.ospf.ospf_process }}
+   router-id {{ devices.ospf.ospf_router_id }}
+   redistribute bgp
+{% for network in devices.ospf.networks %}
+   network {{ network.network }} area {{ devices.ospf.ospf_area }}
+{% endfor %}
+!
+ipv6 router ospf {{ devices.ospf.ospf_process }}
+   router-id {{ devices.ospf.ospf_router_id }}
+   redistribute bgp
+!
+{% endif %}
+

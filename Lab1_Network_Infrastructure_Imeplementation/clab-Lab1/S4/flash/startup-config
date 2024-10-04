@@ -1,9 +1,9 @@
-! Startup-config last modified at Mon Sep 23 01:29:02 2024 by root
+! Startup-config last modified at Fri Oct  4 04:02:49 2024 by root
 ! device: S4 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
 !
 no aaa root
 !
-username admin role network-admin secret sha512 $6$Go5kJKsqM4oNvZ8z$ok1i0uXAxL7VEpClzAf9PYYjONSNULBdct3sLYTSJeRhsoLmGohtOibe3P2Ce7yxhRkKZOm/SWeRbONc.Aaie/
+username admin role network-admin secret sha512 $6$5BMGfgC9OeDAuN7D$/F.MVqx2KE3DoYjFhKLOnGMAG1PyMukHHmm8zaSxodLjPaAeVF7V356J/sE/XuZTbB6Xj8p4r8WUZCTkg6LxU/
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -28,6 +28,10 @@ vlan 40
 vlan 100
    name MGMT
 !
+management api http-commands
+   protocol http
+   no shutdown
+!
 management api gnmi
    transport grpc def
 !
@@ -44,8 +48,8 @@ interface Ethernet3
    switchport mode trunk
 !
 interface Management0
-   ip address 172.20.20.2/24
-   ipv6 address 2001:172:20:20::2/64
+   ip address 172.20.20.10/24
+   ipv6 address 2001:172:20:20::a/64
 !
 interface Vlan100
    ip address 10.100.0.4/24

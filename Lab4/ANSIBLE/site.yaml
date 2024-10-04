@@ -1,0 +1,10 @@
+- name: Generate router coniguration files
+  hosts: localhost
+
+  roles:
+    - role: edge
+      tags: edge
+    - role: core
+      tags: core
+    - role: access
+      tags: access

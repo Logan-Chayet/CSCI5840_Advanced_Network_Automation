@@ -1,9 +1,9 @@
-! Startup-config last modified at Mon Sep 23 01:30:15 2024 by root
+! Startup-config last modified at Fri Oct  4 04:02:11 2024 by root
 ! device: S3 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
 !
 no aaa root
 !
-username admin role network-admin secret sha512 $6$JIFRvxgGCUrDNOf4$hnE2LXKbu.N5IUCJ5xggpnGyzj9ZWnFHAs2fCb.MCC4msIO8l.XMu.adQjY5gTifEq/.507PXbMePnetn8Zid/
+username admin role network-admin secret sha512 $6$b8yphAOpWH4DGrr5$N2q4Yy1dr/ti9/8GTlryi4PQiImHb5RTkqIjKOmmVXjsSdyCcSP0JtT4WmEitFGLKLq8m.D7W0p49SzxG26xb0
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -25,6 +25,10 @@ system l1
 vlan 40,100
    name PROD
 !
+management api http-commands
+   protocol http
+   no shutdown
+!
 management api gnmi
    transport grpc def
 !
@@ -44,8 +48,8 @@ interface Ethernet4
    switchport access vlan 100
 !
 interface Management0
-   ip address 172.20.20.14/24
-   ipv6 address 2001:172:20:20::e/64
+   ip address 172.20.20.3/24
+   ipv6 address 2001:172:20:20::3/64
 !
 interface Vlan100
    ip address 10.100.0.3/24

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Golden Configs</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Get Golden Configs</h1>
+    
+    <!-- Button to trigger the POST request -->
+    <button id="get-configs-btn">Get Golden Configs</button>
+
+    <!-- Placeholder to display the result -->
+    <h3>Golden Configs Output:</h3>
+    <pre id="configs-output"></pre>
+
+    <script>
+        $(document).ready(function(){
+            $('#get-configs-btn').on('click', function() {
+                // Send a POST request to the /get_golden_configs route
+                $.post('/get_golden_configs', function(response) {
+                    // Display the server response inside the <pre> block
+                    $('#configs-output').html(response);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

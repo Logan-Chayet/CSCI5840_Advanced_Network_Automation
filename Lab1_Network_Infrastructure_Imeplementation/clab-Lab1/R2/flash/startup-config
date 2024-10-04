@@ -1,9 +1,9 @@
-! Startup-config last modified at Mon Sep 23 01:29:18 2024 by root
+! Startup-config last modified at Fri Oct  4 04:02:17 2024 by root
 ! device: R2 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
 !
 no aaa root
 !
-username admin role network-admin secret sha512 $6$x4zWuA5XeojDF/H1$ZvcHD610IriXwsOdgWscN6Z4emsu44vc1Y.8l1tRN0eu6jxbNNkJUT28kGC3ogh2BiggTjjkC2gV4k6OJYMbN1
+username admin role network-admin secret sha512 $6$cxzQUoaWeLaQdV5Z$ghdym08pm08xoGOcHnw9hvFo1sLkmAECXS6.j6tnszLV6KfFHcWnzhlfUGhTm30m7zUOsAJnf7H7p5qDZFUS60
 !
 dhcp server
    subnet 21.0.0.0/24
@@ -53,6 +53,10 @@ vlan 20
 !
 vlan 30
    name vlan30
+!
+management api http-commands
+   protocol http
+   no shutdown
 !
 management api gnmi
    transport grpc def
@@ -106,8 +110,8 @@ interface Loopback0
    ip address 10.40.2.1/32
 !
 interface Management0
-   ip address 172.20.20.11/24
-   ipv6 address 2001:172:20:20::b/64
+   ip address 172.20.20.7/24
+   ipv6 address 2001:172:20:20::7/64
 !
 interface Vlan10
    dhcp server ipv4
@@ -132,18 +136,12 @@ router ospf 40
    network 22.0.0.0/24 area 0.0.0.0
    max-lsa 12000
 !
-router ospf 100
-   router-id 10.100.0.7
-   network 10.100.0.0/24 area 0.0.0.0
-   network 10.200.0.0/24 area 0.0.0.0
-   max-lsa 12000
-!
 ipv6 router ospf 40
    router-id 10.40.2.1
 !
 router rip
    network 21.0.0.0/24
    network 22.0.0.0/24
-   shutdown
+   no shutdown
 !
 end

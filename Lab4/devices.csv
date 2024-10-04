@@ -1,0 +1,9 @@
+hostname,device_type,ip,username,password
+R1,eos,10.100.0.6,admin,admin
+R2,eos,10.100.0.7,admin,admin
+R3,eos,10.100.0.8,admin,admin
+R4,eos,10.100.0.9,admin,admin
+S1,eos,10.200.0.1,admin,admin
+S2,eos,10.200.0.2,admin,admin
+S3,eos,10.100.0.3,admin,admin
+S4,eos,10.100.0.4,admin,admin

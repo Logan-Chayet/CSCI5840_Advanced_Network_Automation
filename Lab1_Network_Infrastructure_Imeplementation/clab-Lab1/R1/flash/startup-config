@@ -1,9 +1,9 @@
-! Startup-config last modified at Mon Sep 23 01:28:54 2024 by root
+! Startup-config last modified at Fri Oct  4 04:02:51 2024 by root
 ! device: R1 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
 !
 no aaa root
 !
-username admin role network-admin secret sha512 $6$Hos5FFp3qCgH7A8/$/SStHkoz49JlO8hMhurQQQCmJOk7UN1QbJvBO4J8JQWxA3cCqTQvAbhi1N.RZEkZLJcGyyGFoYpYpBX1i3iKi0
+username admin role network-admin secret sha512 $6$AXBxqB5yNOnbWLpy$pZQ.tdUhrpLWFLixsi3hqk7mDhx0r3CaA8MvMaIF72IWmbhSfAzXESeHN3mOiH3UUK9GN7o1jsvlZ1BOMw5pM/
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -21,6 +21,10 @@ spanning-tree mode mstp
 system l1
    unsupported speed action error
    unsupported error-correction action error
+!
+management api http-commands
+   protocol http
+   no shutdown
 !
 management api gnmi
    transport grpc def
@@ -69,8 +73,8 @@ interface Loopback0
    ip address 10.40.1.1/32
 !
 interface Management0
-   ip address 172.20.20.9/24
-   ipv6 address 2001:172:20:20::9/64
+   ip address 172.20.20.15/24
+   ipv6 address 2001:172:20:20::f/64
 !
 interface Vlan100
 !
@@ -78,19 +82,11 @@ ip routing
 !
 ipv6 unicast-routing
 !
-ip route 0.0.0.0/0 10.200.0.3
-!
 router ospf 40
    router-id 10.40.1.1
    network 10.40.0.16/29 area 0.0.0.0
    network 21.0.0.0/24 area 0.0.0.0
    network 22.0.0.0/24 area 0.0.0.0
-   max-lsa 12000
-!
-router ospf 100
-   router-id 10.100.0.6
-   network 10.100.0.0/24 area 0.0.0.0
-   network 10.200.0.0/24 area 0.0.0.0
    max-lsa 12000
 !
 ipv6 router ospf 40

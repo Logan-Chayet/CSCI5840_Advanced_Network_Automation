@@ -1,9 +1,9 @@
-! Startup-config last modified at Mon Sep 23 01:30:15 2024 by root
+! Startup-config last modified at Fri Oct  4 04:02:11 2024 by root
 ! device: S2 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
 !
 no aaa root
 !
-username admin role network-admin secret sha512 $6$p8L7Ig0SMmXHfrIz$G7cgdZNfI614UNi3CdRGlNR5o3iP8IFmKTL62eMA4hiaO4am6fenDhWiIayE39p6AEZePvilwIwfrSdCJqulG/
+username admin role network-admin secret sha512 $6$pszHMgV/JZ3H72RM$OcHdEEewT4kt6OPdIdepNDTfGi0azmHS/LWaug1qz6QlC2jZKif.guyW3qz7UDW0In50ayBjSGJgS1N89gK/c0
 !
 transceiver qsfp default-mode 4x10G
 !
@@ -34,6 +34,10 @@ vlan 30
 vlan 200
    name MGMT
 !
+management api http-commands
+   protocol http
+   no shutdown
+!
 management api gnmi
    transport grpc def
 !
@@ -53,8 +57,8 @@ interface Ethernet4
    switchport access vlan 30
 !
 interface Management0
-   ip address 172.20.20.15/24
-   ipv6 address 2001:172:20:20::f/64
+   ip address 172.20.20.6/24
+   ipv6 address 2001:172:20:20::6/64
 !
 interface Vlan40
 !

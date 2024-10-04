@@ -1,0 +1,18 @@
+vlan 123
+   name aaaa
+!
+vlan 2134551
+   name asdfasf
+!
+interface Ethern1
+   switchport mode trunk
+!
+interface Eth4
+   switchport access vlan 123
+!
+interface Eth1222
+   switchport mode trunk
+!
+interface Eht1235555
+   switchport access vlan 2134551
+!

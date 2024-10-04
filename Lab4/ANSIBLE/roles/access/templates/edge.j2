@@ -1,0 +1,18 @@
+{% for interface in devices.interfaces %}
+{% if interface.Access %}
+vlan {{ interface.vlan_id }}
+   name {{ interface.vlan_name }}
+!
+{% endif %}
+{% endfor %}
+{% for interface in devices.interfaces %}
+{% if interface.Access %}
+interface {{ interface.interface_name }}
+   switchport access vlan {{ interface.vlan_id }}
+!
+{% else %}
+interface {{ interface.interface_name }}
+   switchport mode trunk
+!
+{% endif %}
+{% endfor %}

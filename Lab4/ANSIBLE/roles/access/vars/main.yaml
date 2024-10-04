@@ -1,0 +1,22 @@
+devices:
+  hostname: asd
+  interfaces:
+  - Access: false
+    interface_name: Ethern1
+    port_type: trunk
+  - Access: true
+    interface_name: Eth4
+    port_type: access
+    vlan_id: '123'
+    vlan_name: aaaa
+  - Access: false
+    interface_name: Eth1222
+    port_type: trunk
+  - Access: true
+    interface_name: Eht1235555
+    port_type: access
+    vlan_id: '2134551'
+    vlan_name: asdfasf
+  mgmt_ip: asd
+  password: asdf
+  username: asd

@@ -1,0 +1,48 @@
+{% for interface in devices.interfaces %}
+interface {{ interface.name }}
+{% if interface.sub_intf %}
+   encapsulation dot1q vlan {{ interface.vlan }}
+{% endif %}
+   ip address {{ interface.ip_address }}
+   ipv6 address {{ interface.ipv6_address }}
+{% if devices.ospf.enabled %}
+   ipv6 ospf {{ devices.ospf.ospf_process }} area {{ devices.ospf.ospf_area }}
+{% endif %}
+!
+{% endfor %}
+ip routing
+!
+ipv6 unicast-routing
+!
+{% if devices.bgp.enabled %}
+router bgp {{ devices.bgp.bgp_as_number }}
+   router-id {{ devices.bgp.bgp_router_id }}
+   neighbor {{ devices.bgp.neighbor_ipv4 }} remote-as {{ devices.bgp.remote_as }}
+   neighbor {{ devices.bgp.neighbor_ipv6 }} remote-as {{ devices.bgp.remote_as }}
+   redistribute ospf
+   redistribute ospfv3
+   !
+   address-family ipv4
+      network {{ devices.bgp.network_ipv4 }}
+   !
+   address-family ipv6
+      neighbor {{ devices.bgp.neighbor_ipv6 }} activate
+      network {{ devices.bgp.network_ipv6 }}
+      redistribute ospfv3
+!
+{% endif %}
+
+{% if devices.ospf.enabled %}
+router ospf {{ devices.ospf.ospf_process }}
+   router-id {{ devices.ospf.ospf_router_id }}
+   redistribute bgp
+{% for network in devices.ospf.networks %}
+   network {{ network.network }} area {{ devices.ospf.ospf_area }}
+{% endfor %}
+!
+ipv6 router ospf {{ devices.ospf.ospf_process }}
+   router-id {{ devices.ospf.ospf_router_id }}
+   redistribute bgp
+!
+{% endif %}
+

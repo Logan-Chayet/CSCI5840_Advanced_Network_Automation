@@ -1,0 +1,24 @@
+interface eth1
+   ip address 1.2.2.2
+   ipv6 address 2222
+   ipv6 ospf asd area asd
+!
+ip routing
+!
+ipv6 unicast-routing
+!
+router rip
+   network asd
+   network ss
+   no shutdown
+
+router ospf asd
+   router-id asd
+   redistribute bgp
+   network asd area asd
+!
+ipv6 router ospf asd
+   router-id asd
+   redistribute bgp
+!
+

@@ -1,0 +1,24 @@
+interface Ethernet1.10
+   encapsulation dot1q vlan 10
+   ip address 123.123.123.0/24
+   ipv6 address 3333::1/64
+   ipv6 ospf 40 area 0
+!
+ip routing
+!
+ipv6 unicast-routing
+!
+router rip
+   network 40.40.40.0/24
+   no shutdown
+
+router ospf 40
+   router-id 10.40.1.1
+   redistribute bgp
+   network 30.30.30.0/24 area 0
+!
+ipv6 router ospf 40
+   router-id 10.40.1.1
+   redistribute bgp
+!
+

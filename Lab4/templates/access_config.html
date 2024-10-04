@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Router Configuration</title>
+    <script>
+        // Add Interface Fields
+        function addInterface() {
+            var interfaceSection = document.getElementById("interface_section");
+            var newInterface = document.createElement("div");
+            newInterface.innerHTML = `
+                <div>
+                    <label>Interface Name:</label>
+                    <input type="text" name="interface_name[]" required>
+                    <label>IP Address:</label>
+                    <select name="port_type[]" onchange="toggleVlanFields(this)">
+                        <option value="">Select...</option>
+                        <option value="access">Access</option>
+                        <option value="trunk">Trunk</option>
+                    </select>
+                    <div class="vlan-fields" style="display: none;">
+                        <label>VLAN ID:</label>
+                        <input type="text" name="vlan_id[]" placeholder="Enter VLAN ID">
+                        <label>VLAN Name:</label>
+                        <input type="text" name="vlan_name[]" placeholder="Enter VLAN Name">
+                    </div>
+                </div><br>`;
+            interfaceSection.appendChild(newInterface);
+        }
+
+        // Toggle VLAN fields visibility based on port type
+        function toggleVlanFields(select) {
+            var vlanFields = select.parentElement.querySelector('.vlan-fields');
+            if (select.value === 'access') {
+                vlanFields.style.display = 'block';
+            } else {
+                vlanFields.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Router Configuration</h1>
+    <form method="POST">
+        <h2 class="my-4">Device Information</h2>
+
+        <!-- Device Information Section -->
+        <div class="form-group">
+            <label for="hostname">Hostname</label>
+            <input type="text" class="form-control" id="hostname" name="hostname" placeholder="Enter device hostname" required>
+        </div>
+        <div class="form-group">
+            <label for="mgmt_ip">MGMT IP</label>
+            <input type="text" class="form-control" id="mgmt_ip" name="mgmt_ip" placeholder="Enter MGMT IP address" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+        </div>
+
+        <!-- Interface Section -->
+        <h3>Interfaces</h3>
+        <div id="interface_section">
+            <div>
+                <label>Interface Name:</label>
+                <input type="text" name="interface_name[]" required>
+                <label>Port Type:</label>
+                <select name="port_type[]" onchange="toggleVlanFields(this)">
+                    <option value="">Select...</option>
+                    <option value="access">Access</option>
+                    <option value="trunk">Trunk</option>
+                </select>
+                <div class="vlan-fields" style="display: none;">
+                    <label>VLAN ID:</label>
+                    <input type="text" name="vlan_id[]" placeholder="Enter VLAN ID">
+                    <label>VLAN Name:</label>
+                    <input type="text" name="vlan_name[]" placeholder="Enter VLAN Name">
+                </div>
+            </div>
+            <br>
+        </div>
+        <button type="button" onclick="addInterface()">Add Another Interface</button>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,42 @@
+interface eth1
+   ip address 192.168.1.1/24
+   ipv6 address 2300::4/64
+   ipv6 ospf 40 area 0
+!
+interface eth2.40
+   encapsulation dot1q vlan 40
+   ip address 10.10.10.10/24
+   ipv6 address 2300::4/64
+   ipv6 ospf 40 area 0
+!
+ip routing
+!
+ipv6 unicast-routing
+!
+router bgp 65001
+   router-id 10.40.19.1
+   neighbor 10.40.0.5 remote-as 65005
+   neighbor 2403::2 remote-as 65005
+   redistribute ospf
+   redistribute ospfv3
+   !
+   address-family ipv4
+      network 10.40.4.1/32
+   !
+   address-family ipv6
+      neighbor 2403::2 activate
+      network 2403::/64
+      redistribute ospfv3
+!
+
+router ospf 40
+   router-id 10.40.19.1
+   redistribute bgp
+   network 10.10.10.10/24 area 0
+   network 20.20.20.20/24 area 0
+!
+ipv6 router ospf 40
+   router-id 10.40.19.1
+   redistribute bgp
+!
+

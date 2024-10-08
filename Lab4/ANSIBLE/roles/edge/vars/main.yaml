@@ -9,16 +9,16 @@ devices:
     network_ipv6: ''
     remote_as: ''
   device_info:
-    hostname: R3
-    mgmt_ip: 10.100.0.8
+    hostname: R1
+    mgmt_ip: 10.100.0.6
     password: admin
     username: admin
   interfaces:
-  - ip_address: 10.200.200.2/30
-    ipv6_address: 3333::1/64
-    name: Ethernet1
-    sub_intf: false
-    vlan: ''
+  - ip_address: 123.123.123.123/24
+    ipv6_address: 2100::2/64
+    name: Ethernet1.10
+    sub_intf: true
+    vlan: '10'
   ospf:
     enabled: false
     networks: []

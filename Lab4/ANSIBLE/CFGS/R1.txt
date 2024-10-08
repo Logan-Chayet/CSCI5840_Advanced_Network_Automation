@@ -1,0 +1,10 @@
+interface Ethernet1.10
+   encapsulation dot1q vlan 10
+   ip address 123.123.123.123/24
+   ipv6 address 2100::2/64
+!
+ip routing
+!
+ipv6 unicast-routing
+!
+

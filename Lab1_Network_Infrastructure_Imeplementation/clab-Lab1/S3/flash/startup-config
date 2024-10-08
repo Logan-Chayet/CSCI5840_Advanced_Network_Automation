@@ -1,29 +1,8 @@
-! Startup-config last modified at Fri Oct  4 04:02:11 2024 by root
-! device: S3 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
-!
-no aaa root
-!
-username admin role network-admin secret sha512 $6$b8yphAOpWH4DGrr5$N2q4Yy1dr/ti9/8GTlryi4PQiImHb5RTkqIjKOmmVXjsSdyCcSP0JtT4WmEitFGLKLq8m.D7W0p49SzxG26xb0
-!
-transceiver qsfp default-mode 4x10G
-!
-service routing protocols model multi-agent
-!
-logging host 10.100.0.5
-!
-hostname S3
-!
+username admin secret admin
 snmp-server community NMAS ro
 snmp-server host 10.100.0.5 version 2c NMAS
 !
-spanning-tree mode mstp
-!
-system l1
-   unsupported speed action error
-   unsupported error-correction action error
-!
-vlan 40,100
-   name PROD
+logging host 10.100.0.5
 !
 management api http-commands
    protocol http
@@ -34,6 +13,9 @@ management api gnmi
 !
 management api netconf
    transport ssh def
+!
+vlan 40,100
+   name PROD
 !
 interface Ethernet1
    switchport mode trunk
@@ -47,13 +29,8 @@ interface Ethernet3
 interface Ethernet4
    switchport access vlan 100
 !
-interface Management0
-   ip address 172.20.20.3/24
-   ipv6 address 2001:172:20:20::3/64
-!
 interface Vlan100
    ip address 10.100.0.3/24
 !
 no ip routing
 !
-end

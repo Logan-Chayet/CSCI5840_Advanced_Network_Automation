@@ -1,26 +1,8 @@
-! Startup-config last modified at Fri Oct  4 04:02:14 2024 by root
-! device: R3 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
-!
-no aaa root
-!
-username admin role network-admin secret sha512 $6$9DG9NPG0uqA6.hJz$5ExjYyNi3TLqlMSldHxIIhLvDbSeAOJBCNQpe9Yyc0HS4ByGRbAkHy7WYuFJ7qwY2QU2Eg1T.xp2xaWHn/mcg0
-!
-transceiver qsfp default-mode 4x10G
-!
-service routing protocols model multi-agent
-!
-logging host 10.100.0.5
-!
-hostname R3
-!
+username admin secret admin
 snmp-server community NMAS ro
 snmp-server host 10.100.0.5 version 2c NMAS
 !
-spanning-tree mode mstp
-!
-system l1
-   unsupported speed action error
-   unsupported error-correction action error
+logging host 10.100.0.5
 !
 management api http-commands
    protocol http
@@ -59,10 +41,6 @@ interface Ethernet3.100
 interface Loopback0
    ip address 10.40.3.1/32
 !
-interface Management0
-   ip address 172.20.20.8/24
-   ipv6 address 2001:172:20:20::8/64
-!
 ip routing
 !
 ipv6 unicast-routing
@@ -94,4 +72,3 @@ ipv6 router ospf 40
    router-id 10.40.3.1
    redistribute bgp
 !
-end

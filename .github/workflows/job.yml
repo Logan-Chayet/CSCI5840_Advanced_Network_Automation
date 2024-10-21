@@ -33,4 +33,4 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           ip addr
-          python3 /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/github_action.py
+          python3 /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/github_actions.py

@@ -3,28 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Router Configuration</title>
+    <title>Edge Router Configuration</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark background */
+            color: #E0E0E0; /* Light text color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2, h3, h4 {
+            color: #BB86FC; /* Light purple for headings */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 250px; /* Set width for input fields */
+            padding: 10px;
+            border: 1px solid #333; /* Dark border */
+            border-radius: 5px;
+            background-color: #1E1E1E; /* Dark input background */
+            color: #E0E0E0; /* Light text color for inputs */
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #BB86FC; /* Focus border color */
+            outline: none;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #BB86FC; /* Button color */
+            border: none;
+            border-radius: 5px;
+            color: #121212; /* Dark text color for buttons */
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #3700B3; /* Darker shade on hover */
+        }
+        .hidden {
+            display: none; /* Utility class for hidden elements */
+        }
+	.header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e; /* Header background */
+            border-bottom: 2px solid #333; /* Divider line */
+        }
+
+        h1 {
+            margin: 20px 0; /* Vertical spacing */
+        }
+
+    </style>
     <script>
         // Show/Hide OSPF Fields
         function toggleOspf() {
-            var ospfCheckbox = document.getElementById("ospf");
             var ospfFields = document.getElementById("ospf_fields");
-            if (ospfCheckbox.checked) {
-                ospfFields.style.display = "block";
-            } else {
-                ospfFields.style.display = "none";
-            }
+            ospfFields.classList.toggle("hidden");
         }
 
         // Show/Hide BGP Fields
         function toggleBgp() {
-            var bgpCheckbox = document.getElementById("bgp");
             var bgpFields = document.getElementById("bgp_fields");
-            if (bgpCheckbox.checked) {
-                bgpFields.style.display = "block";
-            } else {
-                bgpFields.style.display = "none";
-            }
+            bgpFields.classList.toggle("hidden");
         }
 
         // Add Interface Fields
@@ -34,9 +81,9 @@
             newInterface.innerHTML = `
                 <div>
                     <label>Interface Name:</label>
-                    <input type="text" name="interface_name[]" required>
+                    <input type="text" name="interface_name[]">
                     <label>IP Address:</label>
-                    <input type="text" name="ip_address[]" required>
+                    <input type="text" name="ip_address[]">
                     <label>IPv6 Address:</label>
                     <input type="text" name="ipv6_address[]">
                 </div><br>`;
@@ -50,44 +97,43 @@
             newOspfNetwork.innerHTML = `
                 <div>
                     <label>OSPF Network:</label>
-                    <input type="text" name="ospf_network[]" required>
-                </div><br>`;
+                    <input type="text" name="ospf_network[]">
+                </div>
+                <br>`;
             ospfNetworkSection.appendChild(newOspfNetwork);
         }
-
     </script>
 </head>
 <body>
-    <h1>Router Configuration</h1>
+    <div class="header">
+        <h1>Logan's Netman Tool</h1>
+    </div>
+    <h1>Edge Router Configuration</h1>
     <form method="POST">
         <h2 class="my-4">Device Information</h2>
 
-            <!-- Device Information Section -->
-            <div class="form-group">
-                <label for="hostname">Hostname</label>
-                <input type="text" class="form-control" id="hostname" name="hostname" placeholder="Enter device hostname" required>
-            </div>
-            <div class="form-group">
-                <label for="mgmt_ip">MGMT IP</label>
-                <input type="text" class="form-control" id="mgmt_ip" name="mgmt_ip" placeholder="Enter MGMT IP address" required>
-            </div>
-
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
-            </div>
-
-            <!-- Add other fields here like BGP, OSPF, etc. -->
+        <!-- Device Information Section -->
+        <div class="form-group">
+            <label for="hostname">Hostname</label>
+            <input type="text" class="form-control" id="hostname" name="hostname" placeholder="Enter device hostname" required>
+        </div>
+        <div class="form-group">
+            <label for="mgmt_ip">MGMT IP</label>
+            <input type="text" class="form-control" id="mgmt_ip" name="mgmt_ip" placeholder="Enter MGMT IP address" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+        </div>
 
         <!-- OSPF Checkbox -->
         <label for="ospf">Enable OSPF:</label>
         <input type="checkbox" id="ospf" name="ospf" onclick="toggleOspf()">
-        <div id="ospf_fields" style="display: none;">
+        <div id="ospf_fields" class="hidden">
             <h3>OSPF Configuration</h3>
             <label for="ospf_process">OSPF Process ID:</label>
             <input type="text" name="ospf_process"><br>
@@ -109,7 +155,7 @@
         <!-- BGP Checkbox -->
         <label for="bgp">Enable BGP:</label>
         <input type="checkbox" id="bgp" name="bgp" onclick="toggleBgp()">
-        <div id="bgp_fields" style="display: none;">
+        <div id="bgp_fields" class="hidden">
             <h3>BGP Configuration</h3>
             <div>
                 <label for="bgp_as_number">BGP Router AS Number:</label>
@@ -127,7 +173,7 @@
                 <label for="bgp_neighbor_ipv6">BGP Neighbor (IPv6):</label>
                 <input type="text" name="bgp_neighbor_ipv6">
             </div><br>
-	    <div>
+            <div>
                 <label for="bgp_network_ipv4">BGP Network (IPv4):</label>
                 <input type="text" name="bgp_network_ipv4">
             </div><br>
@@ -135,7 +181,7 @@
                 <label for="bgp_network_ipv6">BGP Network (IPv6):</label>
                 <input type="text" name="bgp_network_ipv6">
             </div><br>
-	    <div>
+            <div>
                 <label for="bgp_neighbor_remote_as">BGP Neighbor Remote AS:</label>
                 <input type="text" name="bgp_neighbor_remote_as">
             </div><br>
@@ -146,9 +192,9 @@
         <div id="interface_section">
             <div>
                 <label>Interface Name:</label>
-                <input type="text" name="interface_name[]" required>
+                <input type="text" name="interface_name[]">
                 <label>IP Address:</label>
-                <input type="text" name="ip_address[]" required>
+                <input type="text" name="ip_address[]">
                 <label>IPv6 Address:</label>
                 <input type="text" name="ipv6_address[]">
             </div>
@@ -157,7 +203,13 @@
         <button type="button" onclick="addInterface()">Add Another Interface</button>
 
         <br><br>
-        <input type="submit" value="Submit Configuration">
+    	<button type="submit">Submit Configuration</button>
     </form>
+    {% if output %}
+    <h3 class="my-4">Configuration Output:</h3>
+    <pre>{{ output }}</pre>
+    {% endif %}
+
 </body>
 </html>
+

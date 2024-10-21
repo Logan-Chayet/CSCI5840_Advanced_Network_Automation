@@ -33,7 +33,7 @@ outputs:
     url: http://localhost:8086
     org: boulder
     bucket: netman
-    token: NzDeX6UuoJRiSbcpy7BBKeqzecFC9ennIzHsiOVkUpVoAfmbKt3B6SYfbcL2dwxGjzuO_xEu5-NFLOJqgKGmzQ==
+    token: 0CfjUWAHt5zRKmUYMINjsDGAUIq0AgjLfM2VCWvvG4tvnaOQNGpjSOB8no9QESj_5K3To1B0ON6nE2vG4koqRw==
     override-timestamps: false
     timestamp-precision: s
     health-check-period: 30s

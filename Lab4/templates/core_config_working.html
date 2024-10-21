@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Router Configuration</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark background */
+            color: #ffffff; /* Light text */
+            font-family: Arial, sans-serif; /* Modern font */
+            margin: 0;
+            padding: 20px; /* Padding for the body */
+        }
+
+        h1, h2, h3 {
+            color: #ffffff; /* Light color for headings */
+        }
+
+        .form-group {
+            margin-bottom: 10px; /* Spacing between form groups */
+        }
+
+        label {
+            display: inline-block; /* Inline display for labels */
+            margin-right: 5px; /* Reduced space to the right of labels */
+            width: 120px; /* Fixed width for labels */
+            white-space: nowrap; /* Prevent label wrapping */
+        }
+
+        input[type="text"], input[type="password"] {
+            background-color: #1e1e1e; /* Input background */
+            color: #ffffff; /* Input text color */
+            border: 1px solid #333; /* Input border */
+            padding: 8px; /* Reduced padding inside inputs */
+            border-radius: 5px; /* Rounded corners */
+            width: 200px; /* Fixed width for input fields */
+            box-sizing: border-box; /* Include padding and border in total width */
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px; /* Spacing for checkboxes */
+        }
+
+        button {
+            background-color: #1e1e1e; /* Button background */
+            color: #1e90ff; /* Button text color */
+            border: none; /* No border */
+            padding: 10px 15px; /* Padding for button */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover */
+        }
+
+        button:hover {
+            background-color: #333; /* Darker background on hover */
+            color: #63a4ff; /* Lighter text color on hover */
+        }
+
+        /* Container for dynamic input sections */
+        #interface_section, #ospf_network_section, #rip_network_section {
+            margin-top: 10px; /* Spacing above dynamic sections */
+        }
+
+        .inline-inputs {
+            display: flex; /* Flexbox for inline alignment */
+            align-items: center; /* Center items vertically */
+            margin-bottom: 10px; /* Spacing between rows */
+        }
+
+        /* Space between input fields */
+        .input-spacing {
+            margin-left: 5px; /* Space to the left of input fields */
+        }
+    </style>
+    <script>
+        // Show/Hide OSPF Fields
+        function toggleOspf() {
+            var ospfCheckbox = document.getElementById("ospf");
+            var ospfFields = document.getElementById("ospf_fields");
+            if (ospfCheckbox.checked) {
+                ospfFields.style.display = "block";
+            } else {
+                ospfFields.style.display = "none";
+            }
+        }
+
+        // Show/Hide RIP Fields
+        function toggleRip() {
+            var ripCheckbox = document.getElementById("rip");
+            var ripFields = document.getElementById("rip_fields");
+            if (ripCheckbox.checked) {
+                ripFields.style.display = "block";
+            } else {
+                ripFields.style.display = "none";
+            }
+        }
+
+        // Add Interface Fields
+        function addInterface() {
+            var interfaceSection = document.getElementById("interface_section");
+            var newInterface = document.createElement("div");
+            newInterface.innerHTML = `
+                <div class="inline-inputs">
+                    <label>Interface Name:</label>
+                    <input type="text" name="interface_name[]" required>
+                    <label>IP Address:</label>
+                    <input type="text" name="ip_address[]" required class="input-spacing">
+                    <label>IPv6 Address:</label>
+                    <input type="text" name="ipv6_address[]" class="input-spacing">
+                </div><br>`;
+            interfaceSection.appendChild(newInterface);
+        }
+
+        // Add OSPF Network Fields
+        function addOspfNetwork() {
+            var ospfNetworkSection = document.getElementById("ospf_network_section");
+            var newOspfNetwork = document.createElement("div");
+            newOspfNetwork.innerHTML = `
+                <div>
+                    <label>OSPF Network:</label>
+                    <input type="text" name="ospf_network[]" required>
+                </div><br>`;
+            ospfNetworkSection.appendChild(newOspfNetwork);
+        }
+
+        // Add RIP Network Fields
+        function addRipNetwork() {
+            var ripNetworkSection = document.getElementById("rip_network_section");
+            var newRipNetwork = document.createElement("div");
+            newRipNetwork.innerHTML = `
+                <div>
+                    <label>RIP Network:</label>
+                    <input type="text" name="rip_network[]" required>
+                </div><br>`;
+            ripNetworkSection.appendChild(newRipNetwork);
+        }
+    </script>
+</head>
+<body>
+    <h1>Router Configuration</h1>
+    <form method="POST">
+        <h2>Device Information</h2>
+
+        <!-- Device Information Section -->
+        <div class="form-group">
+            <label for="hostname">Hostname</label>
+            <input type="text" class="form-control" id="hostname" name="hostname" placeholder="Enter device hostname" required>
+        </div>
+        <div class="form-group">
+            <label for="mgmt_ip">MGMT IP</label>
+            <input type="text" class="form-control" id="mgmt_ip" name="mgmt_ip" placeholder="Enter MGMT IP address" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+        </div>
+
+        <!-- OSPF Checkbox -->
+        <label for="ospf">Enable OSPF:</label>
+        <input type="checkbox" id="ospf" name="ospf" onclick="toggleOspf()">
+        <div id="ospf_fields" style="display: none;">
+            <h3>OSPF Configuration</h3>
+            <label for="ospf_process">OSPF Process ID:</label>
+            <input type="text" name="ospf_process"><br>
+            <label for="ospf_router_id">OSPF Router ID:</label>
+            <input type="text" name="ospf_router_id"><br>
+            <label for="ospf_area">OSPF Area:</label>
+            <input type="text" name="ospf_area"><br>
+            <h4>OSPF Networks</h4>
+            <div id="ospf_network_section">
+                <div>
+                    <label>OSPF Network:</label>
+                    <input type="text" name="ospf_network[]">
+                </div>
+                <br>
+            </div>
+            <button type="button" onclick="addOspfNetwork()">Add Another OSPF Network</button>
+        </div>
+
+        <!-- RIP Checkbox -->
+        <label for="rip">Enable RIP:</label>
+        <input type="checkbox" id="rip" name="rip" onclick="toggleRip()">
+        <div id="rip_fields" style="display: none;">
+            <h3>RIP Configuration</h3>
+            <h4>RIP Networks</h4>
+            <div id="rip_network_section">
+                <div>
+                    <label>RIP Network:</label>
+                    <input type="text" name="rip_network[]">
+                </div>
+                <br>
+            </div>
+            <button type="button" onclick="addRipNetwork()">Add Another RIP Network</button>
+        </div>
+
+        <!-- Interface Section -->
+        <h3>Interfaces</h3>
+        <div id="interface_section">
+            <div class="inline-inputs">
+                <label>Interface Name:</label>
+                <input type="text" name="interface_name[]" required>
+                <label>IP Address:</label>
+                <input type="text" name="ip_address[]" required class="input-spacing">
+                <label>IPv6 Address:</label>
+                <input type="text" name="ipv6_address[]" class="input-spacing">
+            </div>
+            <br>
+        </div>
+        <button type="button" onclick="addInterface()">Add Another Interface</button>
+
+        <br><br>
+        <button type="submit">Submit Configuration</button>
+    </form>
+</body>
+</html>

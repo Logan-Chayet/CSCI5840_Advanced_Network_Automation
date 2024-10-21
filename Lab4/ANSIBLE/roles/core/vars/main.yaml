@@ -1,23 +1,21 @@
 devices:
   device_info:
-    hostname: R3
-    mgmt_ip: 10.100.0.6
+    hostname: R2
+    mgmt_ip: 10.100.0.7
     password: admin
     username: admin
   interfaces:
-  - ip_address: 123.123.123.0/24
-    ipv6_address: 3333::1/64
-    name: Ethernet1.10
+  - ip_address: 7.7.7.7/24
+    ipv6_address: 5500::1/64
+    name: Ethernet1.69
     sub_intf: true
-    vlan: '10'
+    vlan: '69'
   ospf:
-    enabled: true
-    networks:
-    - network: 30.30.30.0/24
-    ospf_area: '0'
-    ospf_process: '40'
-    ospf_router_id: 10.40.1.1
+    enabled: false
+    networks: []
+    ospf_area: ''
+    ospf_process: ''
+    ospf_router_id: ''
   rip:
-    enabled: true
-    networks:
-    - network: 40.40.40.0/24
+    enabled: false
+    networks: []

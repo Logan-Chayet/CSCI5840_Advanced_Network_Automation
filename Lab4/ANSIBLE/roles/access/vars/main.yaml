@@ -1,22 +1,11 @@
 devices:
-  hostname: asd
+  hostname: S2
   interfaces:
-  - Access: false
-    interface_name: Ethern1
-    port_type: trunk
   - Access: true
-    interface_name: Eth4
+    interface_name: Ethernet3
     port_type: access
-    vlan_id: '123'
-    vlan_name: aaaa
-  - Access: false
-    interface_name: Eth1222
-    port_type: trunk
-  - Access: true
-    interface_name: Eht1235555
-    port_type: access
-    vlan_id: '2134551'
-    vlan_name: asdfasf
-  mgmt_ip: asd
-  password: asdf
-  username: asd
+    vlan_id: '30'
+    vlan_name: world
+  mgmt_ip: 10.200.0.2
+  password: admin
+  username: admin

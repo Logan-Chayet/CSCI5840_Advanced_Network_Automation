@@ -3,28 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Router Configuration</title>
+    <title>Core Router Configuration</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark background */
+            color: #E0E0E0; /* Light text color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2, h3, h4 {
+            color: #BB86FC; /* Light purple for headings */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 250px; /* Set width for input fields */
+            padding: 10px;
+            border: 1px solid #333; /* Dark border */
+            border-radius: 5px;
+            background-color: #1E1E1E; /* Dark input background */
+            color: #E0E0E0; /* Light text color for inputs */
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #BB86FC; /* Focus border color */
+            outline: none;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #BB86FC; /* Button color */
+            border: none;
+            border-radius: 5px;
+            color: #121212; /* Dark text color for buttons */
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #3700B3; /* Darker shade on hover */
+        }
+        .hidden {
+            display: none; /* Utility class for hidden elements */
+        }
+	.header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e; /* Header background */
+            border-bottom: 2px solid #333; /* Divider line */
+        }
+
+        h1 {
+            margin: 20px 0; /* Vertical spacing */
+        }
+    </style>
     <script>
         // Show/Hide OSPF Fields
         function toggleOspf() {
             var ospfCheckbox = document.getElementById("ospf");
             var ospfFields = document.getElementById("ospf_fields");
-            if (ospfCheckbox.checked) {
-                ospfFields.style.display = "block";
-            } else {
-                ospfFields.style.display = "none";
-            }
+            ospfFields.style.display = ospfCheckbox.checked ? "block" : "none";
         }
 
-	// Show/Hide RIP Fields
+        // Show/Hide RIP Fields
         function toggleRip() {
             var ripCheckbox = document.getElementById("rip");
             var ripFields = document.getElementById("rip_fields");
-            if (ripCheckbox.checked) {
-                ripFields.style.display = "block";
-            } else {
-                ripFields.style.display = "none";
-            }
+            ripFields.style.display = ripCheckbox.checked ? "block" : "none";
         }
 
         // Add Interface Fields
@@ -55,7 +103,7 @@
             ospfNetworkSection.appendChild(newOspfNetwork);
         }
 	
-	// Add RIP Network Fields
+        // Add RIP Network Fields
         function addRipNetwork() {
             var ripNetworkSection = document.getElementById("rip_network_section");
             var newRipNetwork = document.createElement("div");
@@ -66,37 +114,35 @@
                 </div><br>`;
             ripNetworkSection.appendChild(newRipNetwork);
         }
-
     </script>
 </head>
 <body>
-    <h1>Router Configuration</h1>
+    <div class="header">
+        <h1>Logan's Netman Tool</h1>
+    </div>
+    <h1>Core Router Configuration</h1>
     <form method="POST">
         <h2 class="my-4">Device Information</h2>
 
-            <!-- Device Information Section -->
-            <div class="form-group">
-                <label for="hostname">Hostname</label>
-                <input type="text" class="form-control" id="hostname" name="hostname" placeholder="Enter device hostname" required>
-            </div>
-            <div class="form-group">
-                <label for="mgmt_ip">MGMT IP</label>
-                <input type="text" class="form-control" id="mgmt_ip" name="mgmt_ip" placeholder="Enter MGMT IP address" required>
-            </div>
+        <div class="form-group">
+            <label for="hostname">Hostname</label>
+            <input type="text" class="form-control" id="hostname" name="hostname" placeholder="Enter device hostname" required>
+        </div>
+        <div class="form-group">
+            <label for="mgmt_ip">MGMT IP</label>
+            <input type="text" class="form-control" id="mgmt_ip" name="mgmt_ip" placeholder="Enter MGMT IP address" required>
+        </div>
 
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
-            </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+        </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
-            </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+        </div>
 
-            <!-- Add other fields here like BGP, OSPF, etc. -->
-
-        <!-- OSPF Checkbox -->
         <label for="ospf">Enable OSPF:</label>
         <input type="checkbox" id="ospf" name="ospf" onclick="toggleOspf()">
         <div id="ospf_fields" style="display: none;">
@@ -118,7 +164,6 @@
             <button type="button" onclick="addOspfNetwork()">Add Another OSPF Network</button>
         </div>
 
-	<!-- RIP Checkbox -->
         <label for="rip">Enable RIP:</label>
         <input type="checkbox" id="rip" name="rip" onclick="toggleRip()">
         <div id="rip_fields" style="display: none;">
@@ -134,8 +179,6 @@
             <button type="button" onclick="addRipNetwork()">Add Another RIP Network</button>
         </div>
 
-
-        <!-- Interface Section -->
         <h3>Interfaces</h3>
         <div id="interface_section">
             <div>
@@ -151,7 +194,12 @@
         <button type="button" onclick="addInterface()">Add Another Interface</button>
 
         <br><br>
-        <input type="submit" value="Submit Configuration">
+    	<button type="submit">Submit Configuration</button>
     </form>
+    {% if output %}
+    <h3 class="my-4">Configuration Output:</h3>
+    <pre>{{ output }}</pre>
+    {% endif %}
 </body>
 </html>
+

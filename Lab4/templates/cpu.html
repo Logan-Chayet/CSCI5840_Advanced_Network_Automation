@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Info</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3 {
+            color: #bb86fc;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #e0e0e0;
+        }
+
+        input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+        input[type="submit"] {
+            background-color: #bb86fc;
+            color: #121212;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #9a67d9;
+        }
+
+        pre {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            margin-top: 10px;
+            color: #e0e0e0;
+        }
+	.header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e; /* Header background */
+            border-bottom: 2px solid #333; /* Divider line */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Logan's Netman Tool</h1>
+    </div>
+
+    <h1>CPU Info</h1>
+    <form method="POST">
+        <h2 class="my-4">Device Information</h2>
+
+        <!-- Device Information Section -->
+        <div class="form-group">
+            <label for="hostname">Hostname</label>
+            <input type="text" class="form-control" id="hostname" name="hostname" placeholder="Enter device hostname" required>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Output Section -->
+    {% if output %}
+    <h3 class="my-4">CPU Utilization:</h3>
+    <pre>{{ output }}</pre>
+    {% endif %}
+</body>
+</html>
+

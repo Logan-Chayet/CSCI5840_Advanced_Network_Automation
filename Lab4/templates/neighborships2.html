@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighborship Info</title>
+</head>
+<body>
+    <h1>Neighborship Info</h1>
+    <form method="POST">
+        <h2 class="my-4">Device Information</h2>
+
+        <!-- Device Information Section -->
+        <div class="form-group">
+            <label for="hostname">Hostname</label>
+            <input type="text" class="form-control" id="hostname" name="hostname" placeholder="Enter device hostname" required>
+        </div>
+
+        <!-- Dropdown for OSPF or BGP -->
+        <div class="form-group">
+            <label for="protocol">Protocol</label>
+            <select class="form-control" id="protocol" name="protocol" required>
+                <option value="">Select Protocol</option>
+                <option value="OSPF">OSPF</option>
+                <option value="BGP">BGP</option>
+            </select>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Output Section -->
+    {% if output %}
+    <h3 class="my-4">Neighborship Results</h3>
+    <pre>{{ output }}</pre>
+    {% endif %}
+</body>
+</html>

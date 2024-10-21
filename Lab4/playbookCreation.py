@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request
-import yaml, datetime, csv
+import yaml, datetime, csv, os, subprocess, re
 from netmiko import ConnectHandler
 from napalm import get_network_driver
 
@@ -230,6 +230,140 @@ def sendConfig():
         output = connection.send_config_from_file(cfg_file)
     print(output)
     return output
+
+def get_neighborships():
+    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    hostname = request.form.get('hostname')
+    protocol = request.form.get('protocol')
+    mgmt_ip = ""
+    username = ""
+    password = ""
+
+    with open(csv_file, "r") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            if hostname == row["hostname"]:
+                mgmt_ip = row["ip"]
+                username = row["username"]
+                password = row["password"]
+    
+    device = {
+        'device_type': "arista_eos",
+        'host': mgmt_ip,
+        'username': username,
+        'password': password
+    }
+    # Show command that we execute.
+    if protocol == "BGP":
+        command = "show ip bgp"
+    elif protocol == "OSPF":
+        command = "show ip ospf neighbor"
+
+    with ConnectHandler(**device) as net_connect:
+        output = net_connect.send_command(command)
+
+    return output
+
+def get_route_table():
+    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    hostname = request.form.get('hostname')
+    mgmt_ip = ""
+    username = ""
+    password = ""
+
+    with open(csv_file, "r") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            if hostname == row["hostname"]:
+                mgmt_ip = row["ip"]
+                username = row["username"]
+                password = row["password"]
+
+    device = {
+        'device_type': "arista_eos",
+        'host': mgmt_ip,
+        'username': username,
+        'password': password
+    }
+    
+    command = "show ip route"
+
+    with ConnectHandler(**device) as net_connect:
+        output = net_connect.send_command(command)
+
+    return output
+
+def get_cpu():
+    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    hostname = request.form.get('hostname')
+    mgmt_ip = ""
+    username = ""
+    password = ""
+    values = ""
+    number = ""
+    with open(csv_file, "r") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            if hostname == row["hostname"]:
+                mgmt_ip = row["ip"]
+                username = row["username"]
+                password = row["password"]
+    for i in range(8):
+        command = subprocess.run(["gnmic", "-a", mgmt_ip+":6030", "-u", username, "-p", password, "--insecure", "get", "--path", "/components/component[name=CPU"+str(i)+"]/cpu/utilization/state/instant/", "\get", "--values-only"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        output = command.stdout.decode('utf-8')
+        output = output.strip()
+        output = output.strip('[]')
+        lines = output.split('\n')
+        number = lines[1].strip()
+        values += "CPU"+str(i)+": "+number+"\n"
+    print(values)
+
+    return values
+
+def get_ip_connectivity():
+    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    hostname = request.form.get('hostname')
+    src_ip = request.form.get('src_ip')
+    dst_ip = request.form.get('dst_ip')
+    mgmt_ip = ""
+    username = ""
+    password = ""
+
+    with open(csv_file, "r") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            if hostname == row["hostname"]:
+                mgmt_ip = row["ip"]
+                username = row["username"]
+                password = row["password"]
+
+    device = {
+        'device_type': "arista_eos",
+        'host': mgmt_ip,
+        'username': username,
+        'password': password
+    }
+
+    command = "ping "+dst_ip+" source "+src_ip
+
+    with ConnectHandler(**device) as net_connect:
+        net_connect.enable()
+        output = net_connect.send_command(command)
+
+    print(output)
+
+    match = re.search(r'(\d+) packets transmitted, (\d+) received', output)
+
+    if match:
+        packets_transmitted = int(match.group(1))
+        packets_received = int(match.group(2))
+        if packets_transmitted == packets_received:
+            return "Ping Sucessful!"
+        else:
+            return "Ping Failed!"
+    else:
+        return "Invalid Source/Destination Address"
+                
 
 def sshInfo():
     csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"

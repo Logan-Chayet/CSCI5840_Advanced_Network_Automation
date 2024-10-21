@@ -1,0 +1,6 @@
+vlan 30
+   name world
+!
+interface Ethernet3
+   switchport access vlan 30
+!

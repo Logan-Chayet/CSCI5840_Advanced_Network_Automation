@@ -4,28 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Router Configuration</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #bb86fc;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: inline-block;
+            margin-right: 10px; /* Space between label and input */
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select {
+            padding: 10px;
+            border: 1px solid #bb86fc;
+            border-radius: 4px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            margin-right: 10px; /* Space between fields */
+        }
+
+        input[type="submit"] {
+            background-color: #bb86fc;
+            color: #121212;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #9a67d9;
+        }
+
+        button {
+            background-color: #bb86fc;
+            color: #121212;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #9a67d9;
+        }
+
+        .interface-row {
+            display: flex; /* Use flexbox to align items in one line */
+            align-items: center; /* Center items vertically */
+            margin-bottom: 10px; /* Space between each interface row */
+        }
+
+        .vlan-fields {
+            margin-left: 10px; /* Space between port type and VLAN fields */
+            display: none; /* Initially hidden */
+        }
+	.header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e; /* Header background */
+            border-bottom: 2px solid #333; /* Divider line */
+        }
+
+        h1 {
+            color: #BB86FC;
+            margin: 20px 0; /* Vertical spacing */
+        }
+
+    </style>
     <script>
         // Add Interface Fields
         function addInterface() {
             var interfaceSection = document.getElementById("interface_section");
             var newInterface = document.createElement("div");
+            newInterface.classList.add("interface-row");
             newInterface.innerHTML = `
-                <div>
-                    <label>Interface Name:</label>
-                    <input type="text" name="interface_name[]" required>
-                    <label>IP Address:</label>
-                    <select name="port_type[]" onchange="toggleVlanFields(this)">
-                        <option value="">Select...</option>
-                        <option value="access">Access</option>
-                        <option value="trunk">Trunk</option>
-                    </select>
-                    <div class="vlan-fields" style="display: none;">
-                        <label>VLAN ID:</label>
-                        <input type="text" name="vlan_id[]" placeholder="Enter VLAN ID">
-                        <label>VLAN Name:</label>
-                        <input type="text" name="vlan_name[]" placeholder="Enter VLAN Name">
-                    </div>
-                </div><br>`;
+                <label>Interface Name:</label>
+                <input type="text" name="interface_name[]" required>
+                <label>Port Type:</label>
+                <select name="port_type[]" onchange="toggleVlanFields(this)">
+                    <option value="">Select...</option>
+                    <option value="access">Access</option>
+                    <option value="trunk">Trunk</option>
+                </select>
+                <div class="vlan-fields">
+                    <label>VLAN ID:</label>
+                    <input type="text" name="vlan_id[]" placeholder="Enter VLAN ID">
+                    <label>VLAN Name:</label>
+                    <input type="text" name="vlan_name[]" placeholder="Enter VLAN Name">
+                </div>
+            `;
             interfaceSection.appendChild(newInterface);
         }
 
@@ -33,7 +116,7 @@
         function toggleVlanFields(select) {
             var vlanFields = select.parentElement.querySelector('.vlan-fields');
             if (select.value === 'access') {
-                vlanFields.style.display = 'block';
+                vlanFields.style.display = 'flex';
             } else {
                 vlanFields.style.display = 'none';
             }
@@ -41,9 +124,12 @@
     </script>
 </head>
 <body>
-    <h1>Router Configuration</h1>
+    <div class="header">
+        <h1>Logan's Netman Tool</h1>
+    </div>
+    <h1>Access Switch Configuration</h1>
     <form method="POST">
-        <h2 class="my-4">Device Information</h2>
+        <h2>Device Information</h2>
 
         <!-- Device Information Section -->
         <div class="form-group">
@@ -66,7 +152,7 @@
         <!-- Interface Section -->
         <h3>Interfaces</h3>
         <div id="interface_section">
-            <div>
+            <div class="interface-row">
                 <label>Interface Name:</label>
                 <input type="text" name="interface_name[]" required>
                 <label>Port Type:</label>
@@ -75,7 +161,7 @@
                     <option value="access">Access</option>
                     <option value="trunk">Trunk</option>
                 </select>
-                <div class="vlan-fields" style="display: none;">
+                <div class="vlan-fields">
                     <label>VLAN ID:</label>
                     <input type="text" name="vlan_id[]" placeholder="Enter VLAN ID">
                     <label>VLAN Name:</label>
@@ -88,5 +174,11 @@
         <br>
         <input type="submit" value="Submit">
     </form>
+    {% if output %}
+    <h3 class="my-4">Configuration Output:</h3>
+    <pre>{{ output }}</pre>
+    {% endif %}
+
 </body>
 </html>
+

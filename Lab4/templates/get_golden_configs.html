@@ -5,10 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Golden Configs</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h3 {
+            color: #bb86fc;
+        }
+
+        button {
+            background-color: #bb86fc;
+            color: #121212;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px; /* Space above the button */
+        }
+
+        button:hover {
+            background-color: #9a67d9;
+        }
+
+        pre {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto; /* Allow horizontal scrolling if necessary */
+            white-space: pre-wrap; /* Wrap text within the pre tag */
+            margin-top: 10px; /* Space above the output area */
+            color: #e0e0e0; /* Lighter color for the output text */
+        }
+	.header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e; /* Header background */
+            border-bottom: 2px solid #333; /* Divider line */
+        }
+
+        h1 {
+            color: #BB86FC;
+            margin: 20px 0; /* Vertical spacing */
+        }
+
+    </style>
 </head>
 <body>
+    <div class="header">
+        <h1>Logan's Netman Tool</h1>
+    </div>
     <h1>Get Golden Configs</h1>
-    
+
     <!-- Button to trigger the POST request -->
     <button id="get-configs-btn">Get Golden Configs</button>
 
@@ -29,3 +82,4 @@
     </script>
 </body>
 </html>
+

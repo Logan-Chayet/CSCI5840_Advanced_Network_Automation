@@ -1,1 +1,6 @@
+For NETMAN1 machine:
 NzDeX6UuoJRiSbcpy7BBKeqzecFC9ennIzHsiOVkUpVoAfmbKt3B6SYfbcL2dwxGjzuO_xEu5-NFLOJqgKGmzQ==
+For NETMAN2 machine:
+0CfjUWAHt5zRKmUYMINjsDGAUIq0AgjLfM2VCWvvG4tvnaOQNGpjSOB8no9QESj_5K3To1B0ON6nE2vG4koqRw==
+Token for Grafana:
+XDeJqyc7lEV1pQtwh4D8uhWQ5zZtiJ-D9gwfC0rRHC1a98Il1Rt1PZPKQ6QATPPEcBIiqMnVtUwy7mHM0aaZVw==

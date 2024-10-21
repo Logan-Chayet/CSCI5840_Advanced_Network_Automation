@@ -1,4 +1,5 @@
 {% for interface in devices.interfaces %}
+no interface {{ interface.name }}
 interface {{ interface.name }}
 {% if interface.sub_intf %}
    encapsulation dot1q vlan {{ interface.vlan }}

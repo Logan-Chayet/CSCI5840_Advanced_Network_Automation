@@ -1,0 +1,11 @@
+no interface Ethernet1.69
+interface Ethernet1.69
+   encapsulation dot1q vlan 69
+   ip address 7.7.7.7/24
+   ipv6 address 5500::1/64
+!
+ip routing
+!
+ipv6 unicast-routing
+!
+

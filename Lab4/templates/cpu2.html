@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Info</title>
+</head>
+<body>
+    <h1>CPU Info</h1>
+    <form method="POST">
+        <h2 class="my-4">Device Information</h2>
+
+        <!-- Device Information Section -->
+        <div class="form-group">
+            <label for="hostname">Hostname</label>
+            <input type="text" class="form-control" id="hostname" name="hostname" placeholder="Enter device hostname" required>
+        </div>
+
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Output Section -->
+    {% if output %}
+    <h3 class="my-4">CPU Utilization:</h3>
+    <pre>{{ output }}</pre>
+    {% endif %}
+</body>
+</html>

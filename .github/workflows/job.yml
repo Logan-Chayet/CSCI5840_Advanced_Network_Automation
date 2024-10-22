@@ -20,14 +20,13 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Test test test
-        run: echo Hello World
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       #- uses: actions/checkout@v4
       
       # Runs a single command using the runners shell
-      #- name: Stage 0: Install packages
-        #   run: pip3 install netmiko napalm ansible
+      - name: Stage 0 Install packages
+        run: pip3 install netmiko napalm ansible
 
       # Runs a set of commands using the runners shell
       - name: Stage 1 Check and Fixing Violations 
@@ -35,7 +34,7 @@ jobs:
           echo Checking for errors......
           pylint --fail-under=5 /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/playbookCreation.py
 
-      - name: Stage 2: Unit Test
+      - name: Stage 2 Unit Test
         run: |
           echo Testing......
           python3 /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/github_actions.py

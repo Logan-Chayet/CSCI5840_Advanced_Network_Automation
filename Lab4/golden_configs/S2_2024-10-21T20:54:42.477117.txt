@@ -1,0 +1,74 @@
+! Command: show running-config
+! device: S2 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
+!
+no aaa root
+!
+username WLnF6Ffabq privilege 15 secret sha512 $6$nxsjR1xb/iK9nnnp$mNUCu1Zl5Jigm8a5AtJ9gL1MdZ4c6Y29oUg3EG7w01kO0AyM5ok9VyAOn1.s.DNx1rHBNNMKS9NSjVutbS7x21
+username admin role network-admin secret sha512 $6$35GCaGAlWa0YblQM$gs5W83R/pxG1FiV58MylDbI4YFR4mocfOy2Gcc04ipejscfSdHgvhWQ/HkGH8gN7HxxXfgsRIHwisZ52QFuwQ0
+username w3CmKQ3buH privilege 15 secret sha512 $6$VT.Zua4gel/L4VIw$lH60VKWTd1FtW0xwdamP5OS00LLaWBd/Ck.GQx2d6tAZGFomnV1spuM06JtvLxfop3F5lz.w9ffDR3rRLyxaf1
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+logging host 10.100.0.5
+!
+hostname S2
+!
+snmp-server community NMAS ro
+snmp-server host 10.100.0.5 version 2c NMAS
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vlan 10
+   name HOST_10
+!
+vlan 20
+   name HOST_20
+!
+vlan 30
+   name HOST_30
+!
+vlan 200
+   name MGMT
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+management api gnmi
+   transport grpc def
+!
+management api netconf
+   transport ssh def
+!
+interface Ethernet1
+   switchport mode trunk
+!
+interface Ethernet2
+   switchport mode trunk
+!
+interface Ethernet3
+   switchport access vlan 10
+!
+interface Ethernet4
+   switchport access vlan 30
+!
+interface Management0
+   ip address 172.20.20.13/24
+   ipv6 address 2001:172:20:20::d/64
+!
+interface Vlan40
+!
+interface Vlan200
+   ip address 10.200.0.2/24
+!
+no ip routing
+!
+ip route 0.0.0.0/0 10.200.0.4
+!
+end

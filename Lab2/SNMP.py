@@ -50,6 +50,6 @@ def getSyslog():
                 f_object.close()
         i+=1
 
-#getCPU()
+getCPU()
 #getTraps()
-getSyslog()
+#getSyslog()

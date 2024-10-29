@@ -2,6 +2,7 @@ from flask import Flask,render_template,request
 import yaml
 import playbookCreation
 import os
+import csv
 
 app = Flask(__name__)
 
@@ -101,6 +102,23 @@ def ip_connectivity():
         output = playbookCreation.get_ip_connectivity()
 
     return render_template('ip_connectivity.html', output=output)
+
+def read_csv_data():
+    data = []
+    with open("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab7/counts.csv", mode="r") as file:
+        csv_reader = csv.DictReader(file)
+        for row in csv_reader:
+            name = row["name"]
+            count = int(row["count"])
+            total = int(row["total"])
+            percentage = int((count / total) * 100)  # Calculate progress percentage
+            data.append({"name": name, "count": count, "total": total, "percentage": percentage})
+    return data
+
+@app.route('/code_coverage')
+def index():
+    data = read_csv_data()  # Get data from CSV
+    return render_template("code_coverage.html", data=data)
 
 if __name__ == "__main__":
     app.run(debug=True)

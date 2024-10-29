@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bars - Dark Mode</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .progress {
+            background-color: #333333;
+        }
+        .progress-bar {
+            background-color: #4caf50;
+        }
+	.header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e; /* Header background */
+            border-bottom: 2px solid #333; /* Divider line */
+        }
+	h1 {
+            color: #BB86FC;
+            margin: 20px 0; /* Vertical spacing */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Logan's Netman Tool</h1>
+    </div>
+    <div class="container mt-5">
+        <h2 class="text-light">Automation Code Coverage</h2>
+        
+        {% for item in data %}
+        <div class="mb-3">
+            <h5 class="text-light">{{ item.name }} ({{ item.count }}/{{ item.total }})</h5>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{ item.percentage }}%;" aria-valuenow="{{ item.percentage }}" aria-valuemin="0" aria-valuemax="100">
+                    {{ item.percentage }}%
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+

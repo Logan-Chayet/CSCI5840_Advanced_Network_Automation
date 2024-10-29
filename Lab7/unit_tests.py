@@ -12,12 +12,22 @@ from netmiko import ConnectHandler
 from ncclient import manager
 from csv import DictWriter
 import csv
-from count_functions import count_functions_in_file
+import ast
+#from count_functions import count_functions_in_file
 
 NETCONF_count = 0
 SNMP_count = 0
 passwords_count = 0
 playbookCreation_count = 0
+
+def count_functions_in_file(file_path):
+    with open(file_path, "r") as file:
+        tree = ast.parse(file.read())
+
+    # Count the number of function definitions in the file
+    function_count = sum(isinstance(node, ast.FunctionDef) for node in ast.walk(tree))
+
+    return function_count
 
 def getconfig(IP, user, password):
 

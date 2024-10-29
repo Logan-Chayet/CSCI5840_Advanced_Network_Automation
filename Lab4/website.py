@@ -3,6 +3,7 @@ import yaml
 import playbookCreation
 import os
 import csv
+import subprocess
 
 app = Flask(__name__)
 

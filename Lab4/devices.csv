@@ -7,3 +7,5 @@ S1,eos,10.200.0.1,admin,admin
 S2,eos,10.200.0.2,admin,admin
 S3,eos,10.100.0.3,admin,admin
 S4,eos,10.100.0.4,admin,admin
+R6,eos,10.40.100.2,admin,admin
+R7,eos,10.40.101.2,admin,admin

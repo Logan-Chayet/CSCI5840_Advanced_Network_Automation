@@ -231,6 +231,39 @@ def sendConfig():
     print(output)
     return output
 
+def sendConfig_ztp():
+    # Collect Device Info
+    hostname = request.form.get('hostname')
+    mgmt_ip = request.form.get('mgmt_ip')
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    device = {
+        'device_type': "arista_eos",
+        'host': mgmt_ip,
+        'username': username,
+        'password': password
+    }
+    cfg_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab8/ZTP_cfgs/"+hostname+".txt"
+    with ConnectHandler(**device) as connection:
+        connection.enable()
+        output = connection.send_config_from_file(cfg_file)
+    print(output)
+    return output
+
+
+def ping(host):
+    # Use the ping command; '-c 1' sends one packet, works on Unix-based systems.
+    response = os.system(f"ping -c 1 {host} > /dev/null 2>&1")
+    return response == 0
+
+def get_ztp():
+    ip = request.form.get('mgmt_ip')
+    if ping(ip):
+        return sendConfig_ztp()
+    else:
+        return "Host was not reached, check connectivity and try again." 
+
 def get_neighborships():
     csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
     hostname = request.form.get('hostname')

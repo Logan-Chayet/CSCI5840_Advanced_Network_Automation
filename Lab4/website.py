@@ -56,6 +56,18 @@ def access_config():
 
     return render_template('access_config.html', output=config_output)
 
+@app.route("/ztp", methods=['GET','POST'])
+def ztp():
+    ztp = None
+    if request.method == 'POST':
+        ztp = playbookCreation.get_ztp()
+        print(ztp)
+
+        #return f"<pre>{config_output}</pre>"
+
+    return render_template('ztp.html', output=ztp)
+
+
 @app.route("/get_golden_configs", methods=['GET','POST'])
 def get_golden_configs():
     if request.method == 'POST':

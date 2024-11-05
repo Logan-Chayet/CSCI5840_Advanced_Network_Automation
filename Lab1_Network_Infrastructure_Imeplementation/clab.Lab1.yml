@@ -76,8 +76,28 @@ topology:
       image: myubuntu
       exec:
         - dhclient -6 eth1 
+    R6:
+      kind: arista_ceos
+      image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/r6.cfg
+    R7:
+      kind: arista_ceos
+      image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/r7.cfg
+    H5:
+      kind: linux
+      image: myubuntu
+      exec:
+        - ifconfig eth1 2.2.2.2 netmask 255.255.255.252
+        - ip -6 addr add 2222::2/64 dev eth1
+        - ip route add 22.0.0.0/24 via 2.2.2.1
+        - ip route add 21.0.0.0/24 via 2.2.2.1
+        - ip route add 1.1.1.1/30 via 2.2.2.1
 
   links:
+    - endpoints: ["R6:eth1", "R4:eth4"]
+    - endpoints: ["R6:eth2", "R7:eth1"]
+    - endpoints: ["R7:eth2", "H5:eth1"]
     - endpoints: ["R1:eth1", "S1:eth1"]
     - endpoints: ["R1:eth2", "S3:eth1"]
     - endpoints: ["R2:eth1", "S2:eth1"]

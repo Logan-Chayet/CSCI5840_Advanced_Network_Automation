@@ -1,22 +1,12 @@
-username admin secret admin
-snmp-server community NMAS ro
-snmp-server host 10.100.0.5 version 2c NMAS
+! Command: show running-config
+! device: R2 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
 !
-logging host 10.100.0.5
+no aaa root
 !
-management api http-commands
-   protocol http
-   no shutdown
-!
-management api gnmi
-   transport grpc def
-!
-management api netconf
-   transport ssh def
+username admin role network-admin secret sha512 $6$VaXyGQK5E7OcStnQ$txONfDlj5jNbjx.BiWKe2gp/J0Nn1b9qWPcvEbc6evNRRG023MvWNGt.6SVNnBf5ryjmnktD9bugwJPXgWRNq1
 !
 ip dhcp relay information option
 !
-
 dhcp server
    subnet 10.40.100.0/24
       reservations
@@ -56,6 +46,23 @@ dhcp server
       range 2300::4 2300::ffff:ffff:fffe
       name VLAN30
 !
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+logging host 10.100.0.5
+!
+hostname R2
+!
+snmp-server community NMAS ro
+snmp-server host 10.100.0.5 version 2c NMAS
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
 vlan 10
    name vlan10
 !
@@ -64,6 +71,16 @@ vlan 20
 !
 vlan 30
    name vlan30
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+management api gnmi
+   transport grpc def
+!
+management api netconf
+   transport ssh def
 !
 interface Ethernet1
    no switchport
@@ -111,6 +128,10 @@ interface Ethernet2.100
 interface Loopback0
    ip address 10.40.2.1/32
 !
+interface Management0
+   ip address 172.20.20.4/24
+   ipv6 address 2001:172:20:20::4/64
+!
 interface Vlan10
    dhcp server ipv4
    dhcp server ipv6
@@ -142,3 +163,4 @@ router rip
    network 22.0.0.0/24
    no shutdown
 !
+end

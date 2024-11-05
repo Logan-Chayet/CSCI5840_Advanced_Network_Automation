@@ -1,0 +1,47 @@
+! Command: show running-config
+! device: R7 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
+!
+no aaa root
+!
+username admin role network-admin secret sha512 $6$ZFFSbRpOnHozLI1R$0zJYxwTR3QikxPsbscz13lu4munGQzvX1/OMzjgFWGMTILtM1KZOB8cPLcuUa6zkuTNpxr8ZWt1P6LMU39Jr21
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname R7
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+interface Ethernet1
+   no switchport
+   ip address 10.40.101.2/24
+!
+interface Ethernet2
+   no switchport
+   ip address 2.2.2.1/30
+!
+interface Management0
+   ip address 172.20.20.6/24
+   ipv6 address 2001:172:20:20::6/64
+!
+ip routing
+!
+ipv6 unicast-routing
+!
+ip route 10.100.0.0/24 10.40.101.1
+!
+router rip
+   network 2.2.2.0/30
+   network 10.40.101.0/24
+   no shutdown
+!
+end

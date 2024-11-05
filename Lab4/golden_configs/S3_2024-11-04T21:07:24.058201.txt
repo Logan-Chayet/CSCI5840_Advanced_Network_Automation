@@ -1,0 +1,60 @@
+! Command: show running-config
+! device: S3 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
+!
+no aaa root
+!
+username JORrZTgxjZ privilege 15 secret sha512 $6$2FRy/njZtatUr.KL$7U4tF8F8aDMpBzf/5gCxApsKcIoa.Fw6hkCDPQzWYoKKO8V1w.w2wuLbVYA7yBKCtOLBVh4NuOWKPW0QRtQyK/
+username admin role network-admin secret sha512 $6$BN7N2oS9gDIkJ7ty$eiVtUFUeaz60RBNRKALuaGKkMKLOOPfyCxwpzuv4CHH57l01fMAiR8MyS4jKfqo/7U70sA8z4xaSMq2bSKZ3t.
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+logging host 10.100.0.5
+!
+hostname S3
+!
+snmp-server community NMAS ro
+snmp-server host 10.100.0.5 version 2c NMAS
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vlan 40,100
+   name PROD
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+management api gnmi
+   transport grpc def
+!
+management api netconf
+   transport ssh def
+!
+interface Ethernet1
+   switchport mode trunk
+!
+interface Ethernet2
+   switchport mode trunk
+!
+interface Ethernet3
+   switchport mode trunk
+!
+interface Ethernet4
+   switchport access vlan 100
+!
+interface Management0
+   ip address 172.20.20.7/24
+   ipv6 address 2001:172:20:20::7/64
+!
+interface Vlan100
+   ip address 10.100.0.3/24
+!
+no ip routing
+!
+end

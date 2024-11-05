@@ -1,21 +1,31 @@
 devices:
   device_info:
-    hostname: R2
-    mgmt_ip: 10.100.0.7
+    hostname: R1
+    mgmt_ip: 10.100.0.6
     password: admin
     username: admin
+  interface_enabled: true
   interfaces:
-  - ip_address: 7.7.7.7/24
-    ipv6_address: 5500::1/64
-    name: Ethernet1.69
-    sub_intf: true
-    vlan: '69'
+  - ip_address: 1.1.1.1
+    ipv6_address: 4444::1
+    name: Eth123
+    sub_intf: false
+    vlan: ''
+  - ip_address: '256.6666'
+    ipv6_address: 58585::1
+    name: ETH555
+    sub_intf: false
+    vlan: ''
   ospf:
-    enabled: false
-    networks: []
-    ospf_area: ''
-    ospf_process: ''
-    ospf_router_id: ''
+    enabled: true
+    networks:
+    - network: 1.1.1.1
+    - network: 2.2.2.2
+    ospf_area: '0'
+    ospf_process: '40'
+    ospf_router_id: '40'
   rip:
-    enabled: false
-    networks: []
+    enabled: true
+    networks:
+    - network: 5.5.5.5
+    - network: 7.7.7.7

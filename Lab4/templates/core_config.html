@@ -61,6 +61,13 @@
         }
     </style>
     <script>
+	// Show/Hide Interface Fields
+        function toggleInt() {
+            var IntCheckbox = document.getElementById("interface");
+            var IntFields = document.getElementById("interface_section");
+            IntFields.style.display = IntCheckbox.checked ? "block" : "none";
+        }
+
         // Show/Hide OSPF Fields
         function toggleOspf() {
             var ospfCheckbox = document.getElementById("ospf");
@@ -180,18 +187,20 @@
         </div>
 
         <h3>Interfaces</h3>
-        <div id="interface_section">
+	<label for="interface">Enable Interface:</label>
+        <input type="checkbox" id="interface" name="interface" onclick="toggleInt()">
+        <div id="interface_section" style="display: none;">
             <div>
                 <label>Interface Name:</label>
-                <input type="text" name="interface_name[]" required>
+                <input type="text" name="interface_name[]">
                 <label>IP Address:</label>
-                <input type="text" name="ip_address[]" required>
+                <input type="text" name="ip_address[]">
                 <label>IPv6 Address:</label>
                 <input type="text" name="ipv6_address[]">
             </div>
             <br>
-        </div>
         <button type="button" onclick="addInterface()">Add Another Interface</button>
+	</div>
 
         <br><br>
     	<button type="submit">Submit Configuration</button>

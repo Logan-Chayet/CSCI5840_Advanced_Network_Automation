@@ -1,0 +1,104 @@
+! Command: show running-config
+! device: R1 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
+!
+no aaa root
+!
+username LlCipm3zWi privilege 15 secret sha512 $6$KIXX7qGVJgP0Mdvj$rW3feoZ1/m75AJTui7qyh92aOTeZsGMucmAHVzkoz69UnNTBjFeg1ZTdnlS.Qtd8.bdP6w4lqGWeyw8xYl24V/
+username admin role network-admin secret sha512 $6$LQfkG165zRai6nhe$ssome5YJGE0hjalR2asNe7CMdDVl8SFdkpLdHHufLD/gtBok.VkNRRrp0sp9Akh42ljV/j9xdgUl0UPUwByQx.
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+logging host 10.100.0.5
+!
+hostname R1
+!
+snmp-server community NMAS ro
+snmp-server host 10.100.0.5 version 2c NMAS
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+management api gnmi
+   transport grpc def
+!
+management api netconf
+   transport ssh def
+!
+interface Ethernet1
+   no switchport
+!
+interface Ethernet1.10
+   encapsulation dot1q vlan 10
+   ip address 21.0.0.2/24
+   ipv6 address 2100::2/64
+   ipv6 ospf 40 area 0.0.0.0
+!
+interface Ethernet1.20
+   encapsulation dot1q vlan 20
+   ip address 22.0.0.2/24
+   ipv6 address 2200::2/64
+   ipv6 ospf 40 area 0.0.0.0
+!
+interface Ethernet1.30
+   encapsulation dot1q vlan 30
+   ipv6 address 2300::2/64
+   ipv6 ospf 40 area 0.0.0.0
+!
+interface Ethernet1.200
+   encapsulation dot1q vlan 200
+   ip address 10.200.0.3/24
+!
+interface Ethernet2
+   no switchport
+!
+interface Ethernet2.40
+   encapsulation dot1q vlan 40
+   ip address 10.40.0.20/29
+   ipv6 address 2400::1/64
+   ipv6 ospf 40 area 0.0.0.0
+!
+interface Ethernet2.100
+   encapsulation dot1q vlan 100
+   ip address 10.100.0.6/24
+!
+interface Loopback0
+   ip address 10.40.1.1/32
+!
+interface Management0
+   ip address 172.20.20.8/24
+   ipv6 address 2001:172:20:20::8/64
+!
+interface Vlan100
+!
+ip routing
+!
+ipv6 unicast-routing
+!
+router ospf 40
+   router-id 10.40.1.1
+   redistribute bgp
+   network 5.5.5.0/24 area 0.0.0.0
+   network 10.40.0.16/29 area 0.0.0.0
+   network 21.0.0.0/24 area 0.0.0.0
+   network 22.0.0.0/24 area 0.0.0.0
+   max-lsa 12000
+!
+ipv6 router ospf 40
+   router-id 10.40.1.1
+   redistribute bgp
+!
+router rip
+   network 21.0.0.0/24
+   network 22.0.0.0/24
+   no shutdown
+!
+end

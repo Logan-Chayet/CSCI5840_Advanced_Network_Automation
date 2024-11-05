@@ -1,3 +1,30 @@
-interface Ethernet3
-   switchport mode trunk
+interface Eth123
+   ip address 1.1.1.1
+   ipv6 address 4444::1
+   ipv6 ospf 40 area 0
 !
+interface ETH555
+   ip address 256.6666
+   ipv6 address 58585::1
+   ipv6 ospf 40 area 0
+!
+ip routing
+!
+ipv6 unicast-routing
+!
+router rip
+   network 5.5.5.5
+   network 7.7.7.7
+   no shutdown
+
+router ospf 40
+   router-id 40
+   redistribute bgp
+   network 1.1.1.1 area 0
+   network 2.2.2.2 area 0
+!
+ipv6 router ospf 40
+   router-id 40
+   redistribute bgp
+!
+

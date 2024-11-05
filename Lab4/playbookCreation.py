@@ -50,6 +50,7 @@ def createAccess():
 def createCore():
     # Collect OSPF information
     ospf_enabled = request.form.get('ospf') == 'on'
+    interface_enabled = request.form.get('interface') == 'on'
     ospf_process_id = request.form.get('ospf_process')
     ospf_router_id = request.form.get('ospf_router_id')
     ospf_area = request.form.get('ospf_area')
@@ -112,7 +113,8 @@ def createCore():
                 'enabled': rip_enabled,
                 'networks': rip_networks,
             },
-            'interfaces': interfaces
+            'interfaces': interfaces,
+            'interface_enabled': interface_enabled
         }
     }
 

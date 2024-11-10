@@ -379,9 +379,41 @@ def sshInfo_test():
     else:
         return False
 
+def ping_test(host):
+    try:
+        # Run the ping command with 4 packets
+        output = subprocess.check_output(["ping", "-c", "1", host], universal_newlines=True)
+        return "Success"
+    except subprocess.CalledProcessError:
+        return "Failure"
+
+def network_ping_test():
+    ping_dict = {}
+    fail=0
+    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    with open(csv_file, "r") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            if ping_test(row["ip"]) == "Success":
+                ping_dict[row["hostname"]] = "Success"
+                print(row["hostname"]+":"+row["ip"]+" Success")
+            else:
+                ping_dict[row["hostname"]] = "Failure"
+                print(row["hostname"]+":"+row["ip"]+" Failure")
+    for i in ping_dict.values():
+        if i == "Failure":
+            print("Connectivity fails for: "+row["hostname"]+":"+row["ip"])
+            fail+=1
+    if fail > 0:
+        return False
+    else:
+        return True
+
 
 class routerTests(unittest.TestCase):
-    
+
+    def test_network_ping_test(self):
+        self.assertTrue(network_ping_test())
     def test_netconf(self):
         self.assertTrue(netconf_test())
     def test_snmp_cpu(self):
@@ -405,7 +437,7 @@ class routerTests(unittest.TestCase):
     def test_createEdge(self):
         self.assertTrue(createEdge_test())
     def test_get_neighborships(self):
-        self.assertTrue(get_neighborships_test())    
+        self.assertTrue(get_neighborships_test())
     def test_get_route_table(self):
         self.assertTrue(get_route_table_test())
     def test_get_cpu(self):
@@ -415,7 +447,6 @@ class routerTests(unittest.TestCase):
     def test_sshInfo(self):
         self.assertTrue(sshInfo_test())
 
-
 if __name__ == '__main__':
     data = [
             {"name": "SNMP.py", "count": SNMP_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab2/SNMP.py")},
@@ -424,7 +455,7 @@ if __name__ == '__main__':
             {"name": "playbookCreation.py", "count": playbookCreation_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/playbookCreation.py")}
 
         ]
-    with open("counts.csv", mode="w", newline="") as file:
+    with open("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab7/counts.csv", mode="w", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=["name", "count", "total"])
         writer.writeheader()  # Write the header row
         writer.writerows(data)  # Write data rows

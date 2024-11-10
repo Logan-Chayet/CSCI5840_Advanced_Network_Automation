@@ -1,8 +1,27 @@
-username admin secret admin
+! Command: show running-config
+! device: R1 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
+!
+no aaa root
+!
+username LlCipm3zWi privilege 15 secret sha512 $6$KIXX7qGVJgP0Mdvj$rW3feoZ1/m75AJTui7qyh92aOTeZsGMucmAHVzkoz69UnNTBjFeg1ZTdnlS.Qtd8.bdP6w4lqGWeyw8xYl24V/
+username admin role network-admin secret sha512 $6$LQfkG165zRai6nhe$ssome5YJGE0hjalR2asNe7CMdDVl8SFdkpLdHHufLD/gtBok.VkNRRrp0sp9Akh42ljV/j9xdgUl0UPUwByQx.
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+logging host 10.100.0.5
+!
+hostname R1
+!
 snmp-server community NMAS ro
 snmp-server host 10.100.0.5 version 2c NMAS
 !
-logging host 10.100.0.5
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
 !
 management api http-commands
    protocol http
@@ -13,26 +32,6 @@ management api gnmi
 !
 management api netconf
    transport ssh def
-!
-ip dhcp relay information option
-!
-dhcp server
-   subnet 10.40.200.0/24
-      reservations
-         mac-address a2b2.a1b1.c3c3
-            ipv4-address 10.40.200.2
-      !
-      range 10.40.200.3 10.40.200.100
-      default-gateway 10.40.200.1
-
-   subnet 3.3.3.0/24
-      reservations
-         mac-address 12:3a:44:4a:55:55
-            ipv4-address 3.3.3.2
-      !
-      range 3.3.3.6 3.3.3.100
-      default-gateway 3.3.3.1
-   !
 !
 interface Ethernet1
    no switchport
@@ -69,11 +68,14 @@ interface Ethernet2.40
 !
 interface Ethernet2.100
    encapsulation dot1q vlan 100
-   ip address 10.100.0.6/24 
-   dhcp server ipv4
+   ip address 10.100.0.6/24
 !
 interface Loopback0
    ip address 10.40.1.1/32
+!
+interface Management0
+   ip address 172.20.20.8/24
+   ipv6 address 2001:172:20:20::8/64
 !
 interface Vlan100
 !
@@ -83,6 +85,9 @@ ipv6 unicast-routing
 !
 router ospf 40
    router-id 10.40.1.1
+   redistribute bgp
+   network 1.2.3.0/24 area 0.0.0.0
+   network 5.5.5.0/24 area 0.0.0.0
    network 10.40.0.16/29 area 0.0.0.0
    network 21.0.0.0/24 area 0.0.0.0
    network 22.0.0.0/24 area 0.0.0.0
@@ -90,9 +95,11 @@ router ospf 40
 !
 ipv6 router ospf 40
    router-id 10.40.1.1
+   redistribute bgp
 !
 router rip
    network 21.0.0.0/24
    network 22.0.0.0/24
    no shutdown
 !
+end

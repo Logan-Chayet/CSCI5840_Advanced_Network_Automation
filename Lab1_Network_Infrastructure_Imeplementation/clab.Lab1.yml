@@ -39,6 +39,16 @@ topology:
       kind: arista_ceos
       image: ceos:4.32.0F
       startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/s4.cfg
+    R8:
+      kind: arista_ceos
+      image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/r8.cfg
+
+    S5:
+      kind: arista_ceos
+      image: ceos:4.32.0F
+      startup-config: /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab1_Network_Infrastructure_Imeplementation/s5.cfg
+    
     Web_Server:
       kind: linux
       image: myubuntu
@@ -89,12 +99,30 @@ topology:
       image: myubuntu
       exec:
         - ifconfig eth1 2.2.2.2 netmask 255.255.255.252
-        - ip -6 addr add 2222::2/64 dev eth1
+        - ip -6 addr add 2222::2/64 dev eth1 
         - ip route add 22.0.0.0/24 via 2.2.2.1
-        - ip route add 21.0.0.0/24 via 2.2.2.1
-        - ip route add 1.1.1.1/30 via 2.2.2.1
+        - ip route add 21.0.0.0/24 via 2.2.2.1 
+        - ip route add 1.1.1.0/30 via 2.2.2.1
+    H6:
+      kind: linux
+      image: myubuntu
+      exec:
+        - ifconfig eth1 3.3.3.3 netmask 255.255.255.0
+        - ip route del default
+        - ip route add default via 3.3.3.1 dev eth1 onlink 
+    H7:
+      kind: linux
+      image: myubuntu
+      exec:
+        - ifconfig eth1 3.3.3.4 netmask 255.255.255.0
+        - ip route del default
+        - ip route add default via 3.3.3.1 dev eth1 onlink
 
   links:
+    - endpoints: ["R2:eth3", "R8:eth1"]
+    - endpoints: ["R8:eth2", "S5:eth1"]
+    - endpoints: ["S5:eth2", "H6:eth1"]
+    - endpoints: ["S5:eth3", "H7:eth1"]
     - endpoints: ["R6:eth1", "R4:eth4"]
     - endpoints: ["R6:eth2", "R7:eth1"]
     - endpoints: ["R7:eth2", "H5:eth1"]

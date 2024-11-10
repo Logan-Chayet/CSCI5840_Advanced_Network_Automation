@@ -1,24 +1,13 @@
-username admin secret admin
-snmp-server community NMAS ro
-snmp-server host 10.100.0.5 version 2c NMAS
+! Command: show running-config
+! device: R2 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
 !
-logging host 10.100.0.5
+no aaa root
 !
-management api http-commands
-   protocol http
-   no shutdown
-!
-management api gnmi
-   transport grpc def
-!
-management api netconf
-   transport ssh def
+username XD0O5Up37B privilege 15 secret sha512 $6$hFCzofbHMmnLm.N1$7hyefVd39vQg3SRGjpf03aOAFRoN87wh5j..hlXwpO06oLHntZPO7hTOm.0omU2UhpNIJa.tOmzcs1yyWYZrp.
+username admin role network-admin secret sha512 $6$TP7BzBcKYur37x/N$cIY2G6CmXiyN//wNHLgg0KnXtASZiLp53s7rKmkMXX3b6G6pk4hXY.WdP9POyYHpH9k.X3rrzTqlSRdrpUwc4/
 !
 ip dhcp relay information option
-#ip dhcp relay always-on
-ip dhcp relay all-subnets default
 !
-
 dhcp server
    subnet 10.40.100.0/24
       reservations
@@ -58,6 +47,23 @@ dhcp server
       range 2300::4 2300::ffff:ffff:fffe
       name VLAN30
 !
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+logging host 10.100.0.5
+!
+hostname R2
+!
+snmp-server community NMAS ro
+snmp-server host 10.100.0.5 version 2c NMAS
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
 vlan 10
    name vlan10
 !
@@ -66,6 +72,16 @@ vlan 20
 !
 vlan 30
    name vlan30
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+management api gnmi
+   transport grpc def
+!
+management api netconf
+   transport ssh def
 !
 interface Ethernet1
    no switchport
@@ -110,14 +126,12 @@ interface Ethernet2.100
    ip address 10.100.0.7/24
    dhcp server ipv4
 !
-interface Ethernet3
-   no switchport
-   ip address 10.40.200.1/24
-   ip helper-address 10.100.0.6
-!
-
 interface Loopback0
    ip address 10.40.2.1/32
+!
+interface Management0
+   ip address 172.20.20.4/24
+   ipv6 address 2001:172:20:20::4/64
 !
 interface Vlan10
    dhcp server ipv4
@@ -140,7 +154,6 @@ router ospf 40
    network 10.40.0.16/29 area 0.0.0.0
    network 21.0.0.0/24 area 0.0.0.0
    network 22.0.0.0/24 area 0.0.0.0
-   network 10.40.200.0/24 area 20
    max-lsa 12000
 !
 ipv6 router ospf 40
@@ -151,3 +164,4 @@ router rip
    network 22.0.0.0/24
    no shutdown
 !
+end

@@ -1,0 +1,31 @@
+snmp-server community NMAS ro
+snmp-server host 10.100.0.5 version 2c NMAS
+!
+logging host 10.100.0.5
+!
+management api gnmi
+   transport grpc def
+!
+management api netconf
+   transport ssh def
+!
+
+vlan 10
+   name HOST_10
+interface Ethernet2
+   switchport access vlan 10
+!
+interface Ethernet3
+   switchport access vlan 10
+!
+interface Vlan10
+   ip address 3.3.3.2/24
+!
+no ip routing
+!
+
+interface Ethernet1
+   switchport mode trunk
+   switchport
+!
+

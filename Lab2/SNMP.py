@@ -37,19 +37,21 @@ def getSyslog():
     traps = []
     i = 1
     for packet in cap:
-        if 'Syslog' in packet and packet.Syslog.level == "5":
+        if 'Syslog' in packet and packet.Syslog.level <= "5":
             traps.append(str(packet.Syslog))
             #match = re.search(r'Syslog message id:\s*(.*)', str(packet.Syslog))
             match = re.search(r'%(.*)', str(packet.Syslog))
+            if not match:
+                continue
             result = match.group(1)
-            syslog_dict = {'ID':i, 'Router': packet.Syslog.hostname, 'Message':result}
-            field_names = ['ID', 'Router', 'Message']
-            with open('Syslog.csv', 'a') as f_object:
+            syslog_dict = {'ID':i, 'Router': packet.Syslog.hostname, 'Message':result, 'Level': packet.Syslog.level}
+            field_names = ['ID', 'Router', 'Message', 'Level']
+            with open('Syslog.csv', 'w') as f_object:
                 dictwriter_object = DictWriter(f_object, field_names)
                 dictwriter_object.writerow(syslog_dict)
                 f_object.close()
         i+=1
 
-getCPU()
+#getCPU()
 #getTraps()
-#getSyslog()
+getSyslog()

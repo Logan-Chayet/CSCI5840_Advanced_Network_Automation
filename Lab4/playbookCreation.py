@@ -451,17 +451,3 @@ def getGoldenConfig():
         return_info.append(fileName)
     return "\n".join(return_info)
 
-
-def sendConfig2():
-    device = {
-        'device_type': "arista_eos",
-        'host': "10.100.0.8",
-        'username': "admin",
-        'password': "admin"
-    }
-    cfg_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/ANSIBLE/CFGS/R3.txt"
-    with ConnectHandler(**device) as connection:
-        connection.enable()
-        output = connection.send_config_from_file(cfg_file)
-    print(output)
-#sendConfig2()

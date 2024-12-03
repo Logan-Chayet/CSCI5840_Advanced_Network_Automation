@@ -1,24 +1,29 @@
-24,R3,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to down"
-25,R3,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to down"
-26,R4,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to down"
-27,R4,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to down"
-30,R3,BGP-5-ADJCHANGE: peer 10.40.0.10 (VRF default AS 65001) old state Established event Stop new state Idle
-31,R3,BGP-5-ADJCHANGE: peer 10.40.0.10 (VRF default AS 65001) old state Established event Stop new state Idle
-32,R4,BGP-5-ADJCHANGE: peer 10.40.0.9 (VRF default AS 65001) old state Established event Stop new state Idle
-33,R4,BGP-5-ADJCHANGE: peer 10.40.0.9 (VRF default AS 65001) old state Established event Stop new state Idle
-55,R3,BGP-5-ADJCHANGE: peer 2401::2 (VRF default AS 65001) old state Established event Stop new state Idle
-56,R3,BGP-5-ADJCHANGE: peer 2401::2 (VRF default AS 65001) old state Established event Stop new state Idle
-57,R4,BGP-5-ADJCHANGE: peer 2401::1 (VRF default AS 65001) old state Established event Stop new state Idle
-58,R4,BGP-5-ADJCHANGE: peer 2401::1 (VRF default AS 65001) old state Established event Stop new state Idle
-99,R4,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to up"
-102,R3,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to up"
-103,R3,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1, changed state to up"
-111,R3,BGP-5-ADJCHANGE: peer 10.40.0.10 (VRF default AS 65001) old state OpenConfirm event Established new state Established
-112,R3,BGP-5-ADJCHANGE: peer 10.40.0.10 (VRF default AS 65001) old state OpenConfirm event Established new state Established
-113,R4,BGP-5-ADJCHANGE: peer 10.40.0.9 (VRF default AS 65001) old state OpenConfirm event Established new state Established
-114,R4,BGP-5-ADJCHANGE: peer 10.40.0.9 (VRF default AS 65001) old state OpenConfirm event Established new state Established
-123,R4,"LLDP-5-NEIGHBOR_NEW: LLDP neighbor with chassisId 001c.73a1.f6f1 and portId ""Ethernet1"" added on interface Ethernet1"
-124,R4,"LLDP-5-NEIGHBOR_NEW: LLDP neighbor with chassisId 001c.73a1.f6f1 and portId ""Ethernet1"" added on interface Ethernet1"
-128,R3,"LLDP-5-NEIGHBOR_NEW: LLDP neighbor with chassisId 001c.739b.1a92 and portId ""Ethernet1"" added on interface Ethernet1"
-129,R3,BGP-5-ADJCHANGE: peer 2401::2 (VRF default AS 65001) old state OpenConfirm event Established new state Established
-130,R4,BGP-5-ADJCHANGE: peer 2401::1 (VRF default AS 65001) old state OpenConfirm event Established new state Established
+65,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.10, changed state to down",5
+66,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.10, changed state to down",5
+69,R1,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.2.1, interface Et1.10 adjacency dropped: interface went down",4
+70,R1,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.2.1, interface Et1.10 adjacency dropped: interface went down",4
+79,R1,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.2.1, interface 21.0.0.2 adjacency dropped: interface went down, state was: FULL",4
+80,R1,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.2.1, interface 21.0.0.2 adjacency dropped: interface went down, state was: FULL",4
+283,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.20, changed state to down",5
+284,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.20, changed state to down",5
+287,R1,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.2.1, interface Et1.20 adjacency dropped: interface went down",4
+288,R1,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.2.1, interface Et1.20 adjacency dropped: interface went down",4
+291,R1,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.2.1, interface 22.0.0.2 adjacency dropped: interface went down, state was: FULL",4
+646,R1,SYS-5-CONFIG_E: Enter configuration mode from console by admin on vty12 (10.100.0.5),5
+647,R1,SYS-5-CONFIG_E: Enter configuration mode from console by admin on vty12 (10.100.0.5),5
+670,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.10, changed state to up",5
+671,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.10, changed state to up",5
+680,R1,SYS-5-CONFIG_I: Configured from console by admin on vty12 (10.100.0.5),5
+681,R1,SYS-5-CONFIG_I: Configured from console by admin on vty12 (10.100.0.5),5
+799,R1,SYS-5-CONFIG_E: Enter configuration mode from console by admin on vty12 (10.100.0.5),5
+815,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.20, changed state to up",5
+826,R1,SYS-5-CONFIG_I: Configured from console by admin on vty12 (10.100.0.5),5
+846,R1,Et1.10,4
+851,R2,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.1.1, interface Et1.10 adjacency dropped: DD packet mismatch",4
+852,R2,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.1.1, interface Et1.10 adjacency dropped: DD packet mismatch",4
+855,R2,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.1.1, interface Et1.10 adjacency established",4
+856,R2,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.1.1, interface Et1.10 adjacency established",4
+859,R2,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.1.1, interface 21.0.0.1 adjacency dropped: nbr did not list our router ID, state was: FULL",4
+860,R2,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.1.1, interface 21.0.0.1 adjacency dropped: nbr did not list our router ID, state was: FULL",4
+863,R1,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.2.1, interface Et1.10 adjacency established",4
+864,R1,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.2.1, interface Et1.10 adjacency established",4

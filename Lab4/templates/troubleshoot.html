@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshoot</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3 {
+            color: #bb86fc;
+        }
+
+        button {
+            background-color: #bb86fc;
+            color: #121212;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #9a67d9;
+        }
+
+        pre {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            margin-top: 10px;
+            color: #e0e0e0;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e; /* Header background */
+            border-bottom: 2px solid #333; /* Divider line */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Logan's Netman Tool</h1>
+    </div>
+
+    <h1>Troubleshoot</h1>
+    <form method="POST">
+        <button type="submit">Troubleshoot</button>
+    </form>
+
+    <!-- Output Section -->
+    {% if output %}
+    <h3 class="my-4">Troubleshooting Results:</h3>
+    <pre>{{ output }}</pre>
+    {% endif %}
+</body>
+</html>
+

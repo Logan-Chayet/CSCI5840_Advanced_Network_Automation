@@ -4,6 +4,7 @@ import playbookCreation
 import os
 import csv
 import subprocess
+import troubleshooting
 
 app = Flask(__name__)
 
@@ -132,6 +133,14 @@ def read_csv_data():
 def index():
     data = read_csv_data()  # Get data from CSV
     return render_template("code_coverage.html", data=data)
+
+@app.route('/troubleshoot', methods=['GET', 'POST'])
+def troubleshoot():
+    output = None
+    if request.method == 'POST':
+        output = ''.join(troubleshooting.fix_interface_state())
+    return render_template('troubleshoot.html', output=output)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

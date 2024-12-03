@@ -1,0 +1,50 @@
+24,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.10, changed state to down",5
+25,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.10, changed state to down",5
+28,R1,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.2.1, interface Et1.10 adjacency dropped: interface went down",4
+29,R1,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.2.1, interface Et1.10 adjacency dropped: interface went down",4
+34,R1,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.2.1, interface 21.0.0.2 adjacency dropped: interface went down, state was: FULL",4
+35,R1,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.2.1, interface 21.0.0.2 adjacency dropped: interface went down, state was: FULL",4
+132,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.20, changed state to down",5
+133,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.20, changed state to down",5
+139,R1,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.2.1, interface Et1.20 adjacency dropped: interface went down",4
+140,R1,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.2.1, interface 22.0.0.2 adjacency dropped: interface went down, state was: FULL",4
+193,R2,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.200, changed state to down",5
+194,R2,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.200, changed state to down",5
+673,R2,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.1.1, interface Et1.10 adjacency dropped: inactivity timer expired",4
+674,R2,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.1.1, interface Et1.10 adjacency dropped: inactivity timer expired",4
+702,R2,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.1.1, interface 21.0.0.1 adjacency dropped: inactivity timer expired, state was: FULL",4
+703,R2,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.1.1, interface 21.0.0.1 adjacency dropped: inactivity timer expired, state was: FULL",4
+707,R2,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.1.1, interface Et1.20 adjacency dropped: inactivity timer expired",4
+708,R2,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.1.1, interface Et1.20 adjacency dropped: inactivity timer expired",4
+752,R2,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.1.1, interface 22.0.0.1 adjacency dropped: inactivity timer expired, state was: FULL",4
+753,R2,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.1.1, interface 22.0.0.1 adjacency dropped: inactivity timer expired, state was: FULL",4
+854,R1,SYS-5-CONFIG_E: Enter configuration mode from console by admin on vty12 (10.100.0.5),5
+855,R1,SYS-5-CONFIG_E: Enter configuration mode from console by admin on vty12 (10.100.0.5),5
+873,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.10, changed state to up",5
+874,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.10, changed state to up",5
+892,R1,SYS-5-CONFIG_I: Configured from console by admin on vty12 (10.100.0.5),5
+893,R1,SYS-5-CONFIG_I: Configured from console by admin on vty12 (10.100.0.5),5
+1035,R1,SYS-5-CONFIG_E: Enter configuration mode from console by admin on vty12 (10.100.0.5),5
+1055,R1,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.20, changed state to up",5
+1070,R1,SYS-5-CONFIG_I: Configured from console by admin on vty12 (10.100.0.5),5
+1212,R2,SYS-5-CONFIG_E: Enter configuration mode from console by admin on vty18 (10.100.0.5),5
+1213,R2,SYS-5-CONFIG_E: Enter configuration mode from console by admin on vty18 (10.100.0.5),5
+1229,R2,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.200, changed state to up",5
+1230,R2,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.200, changed state to up",5
+1241,R2,SYS-5-CONFIG_I: Configured from console by admin on vty18 (10.100.0.5),5
+2649,R1,"OSPF-4-OSPF_ADJACENCY_ESTABLISHED: NGB 10.40.2.1, interface 21.0.0.2 adjacency established",4
+2650,R1,"OSPF-4-OSPF_ADJACENCY_ESTABLISHED: NGB 10.40.2.1, interface 21.0.0.2 adjacency established",4
+2653,R2,"OSPF-4-OSPF_ADJACENCY_ESTABLISHED: NGB 10.40.1.1, interface 21.0.0.1 adjacency established",4
+2654,R2,"OSPF-4-OSPF_ADJACENCY_ESTABLISHED: NGB 10.40.1.1, interface 21.0.0.1 adjacency established",4
+2699,R2,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.1.1, interface Et1.10 adjacency established",4
+2700,R2,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.1.1, interface Et1.10 adjacency established",4
+2701,R1,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.2.1, interface Et1.10 adjacency established",4
+2702,R1,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.2.1, interface Et1.10 adjacency established",4
+2709,R1,"OSPF-4-OSPF_ADJACENCY_ESTABLISHED: NGB 10.40.2.1, interface 22.0.0.2 adjacency established",4
+2710,R1,"OSPF-4-OSPF_ADJACENCY_ESTABLISHED: NGB 10.40.2.1, interface 22.0.0.2 adjacency established",4
+2713,R2,"OSPF-4-OSPF_ADJACENCY_ESTABLISHED: NGB 10.40.1.1, interface 22.0.0.1 adjacency established",4
+2714,R2,"OSPF-4-OSPF_ADJACENCY_ESTABLISHED: NGB 10.40.1.1, interface 22.0.0.1 adjacency established",4
+2846,R1,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.2.1, interface Et1.20 adjacency established",4
+2847,R1,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.2.1, interface Et1.20 adjacency established",4
+2850,R2,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.1.1, interface Et1.20 adjacency established",4
+2851,R2,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.1.1, interface Et1.20 adjacency established",4

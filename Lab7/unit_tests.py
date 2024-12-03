@@ -19,6 +19,7 @@ NETCONF_count = 0
 SNMP_count = 0
 passwords_count = 0
 playbookCreation_count = 0
+troubleshooting_count = 0
 
 def count_functions_in_file(file_path):
     with open(file_path, "r") as file:
@@ -410,6 +411,30 @@ def network_ping_test():
         return True
 
 
+troubleshooting_count +=1
+def pcap_test():
+    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/traps.pcap"
+
+    check_file = os.path.isfile(path)
+
+    if check_file:
+        return True
+    else:
+        return False
+troubleshooting_count +=1
+def devices_test():
+    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+
+    check_file = os.path.isfile(path)
+
+    if check_file:
+        return True
+    else:
+        return False
+
+
+
+
 class routerTests(unittest.TestCase):
 
     def test_network_ping_test(self):
@@ -446,14 +471,19 @@ class routerTests(unittest.TestCase):
         self.assertTrue(get_ip_connectivity_test())
     def test_sshInfo(self):
         self.assertTrue(sshInfo_test())
+    def test_pcap(self):
+        self.assertTrue(pcap_test())
+    def test_devices(self):
+        self.assertTrue(devices_test())
+
 
 if __name__ == '__main__':
     data = [
             {"name": "SNMP.py", "count": SNMP_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab2/SNMP.py")},
             {"name": "NETCONF.py", "count": NETCONF_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab2/NETCONF.py")},
             {"name": "passwords.py", "count": passwords_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/passwords.py")},
-            {"name": "playbookCreation.py", "count": playbookCreation_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/playbookCreation.py")}
-
+            {"name": "playbookCreation.py", "count": playbookCreation_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/playbookCreation.py")},
+            {"name": "troubleshooting.py", "count": troubleshooting_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/troubleshooting.py")}
         ]
     with open("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab7/counts.csv", mode="w", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=["name", "count", "total"])

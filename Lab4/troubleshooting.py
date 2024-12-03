@@ -116,64 +116,134 @@ def interface_no_shut(interface, hostname):
         if hostname == i:
             config_interface(routers[i]['ip'], routers[i]['username'], routers[i]['password'], interface)
 
+def find_dst_ip(hostname, interface):
+    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+
+    routers = sshInfo()
+    for i in routers:
+        if hostname == i:
+            ip = routers[i]['ip']
+            username = routers[i]['username']
+            password = routers[i]['password']
+
+    device = {
+        'device_type': "arista_eos",
+        'host': ip,
+        'username': username,
+        'password': password
+    }
+
+    command = "show ip int br"
+
+    with ConnectHandler(**device) as net_connect:
+        net_connect.enable()
+        output = net_connect.send_command(command)
+        print(output)
+
+    match = re.search(r"Ethernet"+interface+"\s+(\S+)", output)
+
+    if match:
+        ip_address_with_subnet = match.group(1)
+        ip_address = ip_address_with_subnet.split('/')[0]  # Split and get only the IP address
+        print(f"The IP address for Ethernet1.10 is: {ip_address}")
+        return ip_address
+    else:
+        print("Ethernet1.10 not found")
+
+
+def get_ip_connectivity(hostname, interface):
+    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    dst_ip = find_dst_ip(hostname, interface)
+    devices = ["R1", "R2", "R3", "R4"]
+    routers = sshInfo()
+    ping_success = {}
+    for i in devices:
+        if hostname != i:
+            ip = routers[i]['ip']
+            username = routers[i]['username']
+            password = routers[i]['password']
+
+            device = {
+                'device_type': "arista_eos",
+                'host': ip,
+                'username': username,
+                'password': password
+            }
+
+            command = "ping "+str(dst_ip)
+
+            with ConnectHandler(**device) as net_connect:
+                net_connect.enable()
+                output = net_connect.send_command(command)
+
+            match = re.search(r'(\d+) packets transmitted, (\d+) received', output)
+            
+            if match:
+                packets_transmitted = int(match.group(1))
+                packets_received = int(match.group(2))
+                if packets_transmitted == packets_received:
+                    ping_success[i] = "True"
+                else:
+                    ping_success[i] = "False"
+            else:
+                ping_success[i] = "False"
+    return ping_success
+
 
 def fix_interface_state():
     getSyslog()
     seen = set()
     data = extract_interface_states("Syslog.csv")
+
+    logs = []
+
+    logs.append("Checking for down interfaces\n")
     for entry in data:
         if entry['State'] == "down":
             if entry['Interface'] in seen:
                 continue
             seen.add(entry['Interface'])
+            logs.append("Found Interface: "+entry['Interface']+" to be down\n")
+            logs.append("Now doing a no shutdown on Interface: "+entry['Interface']+"\n")
             interface_no_shut(entry['Interface'], entry['Hostname'])
     time.sleep(1)
     getSyslog()
 
     data_after = extract_interface_states("Syslog.csv")
     seen_after = set()
+    logs.append("Now checking in Syslogs that interface is up\n")
     for entry in data_after:
         if entry['State'] == "up":
             if entry['Interface'] in seen_after:
                 continue
             seen_after.add(entry['Interface'])
-            print(entry['Interface'])
+            logs.append("Interface: "+entry['Interface']+ " is now up\n")
+    
+    logs.append("Now checking IP connectivity from other devices\n")
 
+    seen_ip = set()
+    for entry in data_after:
+        if entry['State'] == "up":
+            if entry['Interface'] in seen_ip:
+                continue
+            seen_ip.add(entry['Interface'])
+            pings = get_ip_connectivity(entry['Hostname'], entry['Interface'])
 
-fix_interface_state()
+            for i in pings:
+                if pings[i] == "True":
+                    logs.append(i+" ping PASSED for device: "+entry['Hostname']+" at interface: "+entry['Interface']+"\n")
+                else:
+                    logs.append(i+ " ping FAILED for device: "+entry['Hostname']+" at interface: "+entry['Interface']+"\n")
+
+    return logs
+
+#x = fix_interface_state()
+#for i in x:
+#    print(i)
 
 #csv_file = "Syslog.csv"  # Replace with the path to your CSV file
 #interface_states = extract_interface_states(csv_file)
 
 #for entry in interface_states:
-#    print(f"Interface: {entry['Interface']}, State: {entry['State']}")
-
-def tshark_run():
-    command = [
-        "tshark",
-        "-a", "duration:20",
-        "-w", "traps.pcap",
-        "-i", "CR_e1-1",
-        "-q"
-    ]
-
-    try:
-        # Run the tshark command in the background
-        process = subprocess.Popen(command)
-        print(f"tshark is running in the background with PID: {process.pid}")
-
-        # Run other functions while tshark is running
-        for i in range(10):
-            print(f"Doing other work... {i}")
-            time.sleep(1)  # Simulate work
-
-        # Optionally, wait for tshark to complete
-        process.terminate()
-        print("tshark process has completed.")
-
-    except FileNotFoundError:
-        print("tshark command not found. Ensure tshark is installed and in your PATH.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-#tshark_run()
+#    print(f"Interface: {entry['Interface']}, State: {entry['State']}, {entry['Hostname']}")
 

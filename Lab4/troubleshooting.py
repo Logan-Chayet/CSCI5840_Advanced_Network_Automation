@@ -234,16 +234,8 @@ def fix_interface_state():
                     logs.append(i+" ping PASSED for device: "+entry['Hostname']+" at interface: "+entry['Interface']+"\n")
                 else:
                     logs.append(i+ " ping FAILED for device: "+entry['Hostname']+" at interface: "+entry['Interface']+"\n")
-
+    
+    subprocess.run(["git", "add", "."], check=True)
+    subprocess.run(["git", "commit", "-m", "Troubleshooting Commit"], check=True)
     return logs
-
-#x = fix_interface_state()
-#for i in x:
-#    print(i)
-
-#csv_file = "Syslog.csv"  # Replace with the path to your CSV file
-#interface_states = extract_interface_states(csv_file)
-
-#for entry in interface_states:
-#    print(f"Interface: {entry['Interface']}, State: {entry['State']}, {entry['Hostname']}")
 

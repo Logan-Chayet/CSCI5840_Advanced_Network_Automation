@@ -1,5 +1,5 @@
 hostname,device_type,ip,username,password
-R1,eos,10.100.0.6,admin,admin
+R1,cisco_ios,192.168.122.2,admin,admin
 R2,eos,10.100.0.7,admin,admin
 R3,eos,10.100.0.8,admin,admin
 R4,eos,10.100.0.9,admin,admin

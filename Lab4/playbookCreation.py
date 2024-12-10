@@ -43,7 +43,7 @@ def createAccess():
     }
     # Convert data to YAML and write to a file
     yaml_output = yaml.dump(config_data, default_flow_style=False)
-    with open('/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/ANSIBLE/roles/access/vars/main.yaml', 'w') as yaml_file:
+    with open('../Lab4/ANSIBLE/roles/access/vars/main.yaml', 'w') as yaml_file:
         yaml_file.write(yaml_output)
     return yaml_output
 
@@ -120,7 +120,7 @@ def createCore():
 
     # Convert to YAML
     yaml_output = yaml.dump(config_data, default_flow_style=False)
-    with open('/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/ANSIBLE/roles/core/vars/main.yaml', 'w') as yaml_file:
+    with open('../Lab4/ANSIBLE/roles/core/vars/main.yaml', 'w') as yaml_file:
         yaml_file.write(yaml_output)
     return yaml_output
 
@@ -209,7 +209,7 @@ def createEdge():
 
     # Convert to YAML
     yaml_output = yaml.dump(config_data, default_flow_style=False)
-    with open('/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/ANSIBLE/roles/edge/vars/main.yaml', 'w') as yaml_file:
+    with open('../Lab4/ANSIBLE/roles/edge/vars/main.yaml', 'w') as yaml_file:
         yaml_file.write(yaml_output)
     return yaml_output
 
@@ -226,7 +226,7 @@ def sendConfig():
         'username': username,
         'password': password
     }
-    cfg_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/ANSIBLE/CFGS/"+hostname+".txt"
+    cfg_file = "../Lab4/ANSIBLE/CFGS/"+hostname+".txt"
     with ConnectHandler(**device) as connection:
         connection.enable()
         output = connection.send_config_from_file(cfg_file)
@@ -246,7 +246,7 @@ def sendConfig_ztp():
         'username': username,
         'password': password
     }
-    cfg_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab8/ZTP_cfgs/"+hostname+".txt"
+    cfg_file = "../Lab8/ZTP_cfgs/"+hostname+".txt"
     with ConnectHandler(**device) as connection:
         connection.enable()
         output = connection.send_config_from_file(cfg_file)
@@ -267,7 +267,7 @@ def get_ztp():
         return "Host was not reached, check connectivity and try again." 
 
 def get_neighborships():
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../Lab4/devices.csv"
     hostname = request.form.get('hostname')
     protocol = request.form.get('protocol')
     mgmt_ip = ""
@@ -300,7 +300,7 @@ def get_neighborships():
     return output
 
 def get_route_table():
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../Lab4/devices.csv"
     hostname = request.form.get('hostname')
     mgmt_ip = ""
     username = ""
@@ -329,7 +329,7 @@ def get_route_table():
     return output
 
 def get_cpu():
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../Lab4/devices.csv"
     hostname = request.form.get('hostname')
     mgmt_ip = ""
     username = ""
@@ -356,7 +356,7 @@ def get_cpu():
     return values
 
 def get_ip_connectivity():
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../Lab4/devices.csv"
     hostname = request.form.get('hostname')
     src_ip = request.form.get('src_ip')
     dst_ip = request.form.get('dst_ip')
@@ -401,7 +401,7 @@ def get_ip_connectivity():
                 
 
 def sshInfo():
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../Lab4/devices.csv"
     data = {}
 
     with open(csv_file, "r") as file:

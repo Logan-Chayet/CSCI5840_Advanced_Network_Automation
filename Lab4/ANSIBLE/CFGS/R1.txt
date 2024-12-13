@@ -1,21 +1,5 @@
-no interface f0/1
-interface f0/1
-   ip address 7.7.7.7 255.255.255.0
-   ipv6 address 
-   ipv6 ospf 69 area 0
-!
 ip routing
 !
 ipv6 unicast-routing
-!
-
-router ospf 69
-   router-id 1.2.3.4
-   redistribute bgp
-   network 5.5.5.5 0.0.0.255 area 0
-!
-ipv6 router ospf 69
-   router-id 1.2.3.4
-   redistribute bgp
 !
 

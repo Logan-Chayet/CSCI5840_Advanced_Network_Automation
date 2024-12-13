@@ -1,16 +1,16 @@
 devices:
   device_info:
-    hostname: R1
+    hostname: admin
     mgmt_ip: 10.100.0.6
     password: admin
     username: admin
-  interface_enabled: false
+  interface_enabled: true
   interfaces:
-  - ip_address: ''
-    ipv6_address: ''
-    name: ''
-    sub_intf: false
-    vlan: ''
+  - ip_address: 1.2.3.4/24
+    ipv6_address: 1234::1/64
+    name: ethernet1.300
+    sub_intf: true
+    vlan: '300'
   ospf:
     enabled: true
     networks:

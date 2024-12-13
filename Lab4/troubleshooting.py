@@ -235,7 +235,7 @@ def fix_interface_state():
                 else:
                     logs.append(i+ " ping FAILED for device: "+entry['Hostname']+" at interface: "+entry['Interface']+"\n")
     
-    subprocess.run(["git", "add", "."], check=True)
-    subprocess.run(["git", "commit", "-m", "Troubleshooting Commit"], check=True)
+    #subprocess.run(["git", "add", "."], check=True)
+    #subprocess.run(["git", "commit", "-m", "Troubleshooting Commit"], check=True)
     return logs
 

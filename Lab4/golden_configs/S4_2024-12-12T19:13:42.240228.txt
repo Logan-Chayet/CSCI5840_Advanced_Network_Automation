@@ -1,0 +1,60 @@
+! Command: show running-config
+! device: S4 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
+!
+no aaa root
+!
+username IaqerY0BEA privilege 15 secret sha512 $6$aoaobn/IKBZBQ/DX$bxpUIlWYJ2rXqcjhp40yVJ1Uxm6cYgDmRgGe2EfZMqRZP1H7kQsP06Vou1Z1M3kJMH6SySYMAUjeckpvEQJun/
+username admin role network-admin secret sha512 $6$T6OqezXIo0F0wuiR$BKh9AkOtlD3E/EiKznsGYgTczWzMCzxet/N0PPyBDAd/R3uMGN1S1TNHZocvuFQbd9IIJcreZXYB6wfAd8bil0
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+logging host 10.100.0.5
+!
+hostname S4
+!
+snmp-server community NMAS ro
+snmp-server host 10.100.0.5 version 2c NMAS
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vlan 40
+   name PROD
+!
+vlan 100
+   name MGMT
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+management api gnmi
+   transport grpc def
+!
+management api netconf
+   transport ssh def
+!
+interface Ethernet1
+   switchport mode trunk
+!
+interface Ethernet2
+   switchport mode trunk
+!
+interface Ethernet3
+   switchport mode trunk
+!
+interface Management0
+   ip address 172.20.20.8/24
+   ipv6 address 2001:172:20:20::8/64
+!
+interface Vlan100
+   ip address 10.100.0.4/24
+!
+no ip routing
+!
+end

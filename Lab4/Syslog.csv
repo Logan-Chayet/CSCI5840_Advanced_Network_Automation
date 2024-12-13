@@ -30,3 +30,20 @@
 699,R2,"LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet1.200, changed state to up",5
 709,R2,SYS-5-CONFIG_I: Configured from console by admin on vty18 (10.100.0.5),5
 710,R2,SYS-5-CONFIG_I: Configured from console by admin on vty18 (10.100.0.5),5
+816,R2,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.1.1, interface 22.0.0.1 adjacency dropped: DD packet mismatch, state was: FULL",4
+817,R2,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.1.1, interface 22.0.0.1 adjacency dropped: DD packet mismatch, state was: FULL",4
+820,R1,"OSPF-4-OSPF_ADJACENCY_ESTABLISHED: NGB 10.40.2.1, interface 22.0.0.2 adjacency established",4
+822,R2,"OSPF-4-OSPF_ADJACENCY_ESTABLISHED: NGB 10.40.1.1, interface 22.0.0.1 adjacency established",4
+1297,R2,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.1.1, interface Et1.20 adjacency dropped: DD packet mismatch",4
+1298,R2,"OSPFv3-4-OSPF3_ADJACENCY_TEARDOWN: IPv6 Neighbor 10.40.1.1, interface Et1.20 adjacency dropped: DD packet mismatch",4
+1302,R2,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.1.1, interface Et1.20 adjacency established",4
+1528,R1,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.2.1, interface Et1.20 adjacency established",4
+1529,R1,"OSPFv3-4-OSPF3_ADJACENCY_ESTABLISHED: IPv6 Neighbor 10.40.2.1, interface Et1.20 adjacency established",4
+2038,R1,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.3.1, interface 10.40.0.20 adjacency dropped: inactivity timer expired, state was: INIT",4
+2039,R1,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.3.1, interface 10.40.0.20 adjacency dropped: inactivity timer expired, state was: INIT",4
+2044,R4,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.3.1, interface 10.40.0.10 adjacency dropped: inactivity timer expired, state was: INIT",4
+2045,R4,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.3.1, interface 10.40.0.10 adjacency dropped: inactivity timer expired, state was: INIT",4
+2046,R4,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.3.1, interface 10.40.0.17 adjacency dropped: inactivity timer expired, state was: INIT",4
+2047,R4,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.3.1, interface 10.40.0.17 adjacency dropped: inactivity timer expired, state was: INIT",4
+2050,R2,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.3.1, interface 10.40.0.19 adjacency dropped: inactivity timer expired, state was: INIT",4
+2051,R2,"OSPF-4-OSPF_ADJACENCY_TEARDOWN: NGB 10.40.3.1, interface 10.40.0.19 adjacency dropped: inactivity timer expired, state was: INIT",4

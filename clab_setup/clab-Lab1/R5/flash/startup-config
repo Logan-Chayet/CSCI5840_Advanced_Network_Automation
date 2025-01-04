@@ -1,0 +1,63 @@
+! Startup-config last modified at Sat Jan  4 19:43:58 2025 by root
+! device: R5 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
+!
+no aaa root
+!
+username admin role network-admin secret sha512 $6$aHm0EBjwmtrSCmBl$x9lT8ushWzh1OxV7lNiR.05esHeKrDYKsBKZj7vudxndZbVhvns9Ef98fq7i/ueQx/QX5AaRVPf9aTnXh6ggw0
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname R5
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+interface Ethernet1
+   no switchport
+   ip address 10.40.0.2/30
+   ipv6 address 2402::2/64
+!
+interface Ethernet2
+   no switchport
+   ip address 10.40.0.5/30
+   ipv6 address 2403::2/64
+!
+interface Ethernet3
+   no switchport
+   ip address 1.1.1.1/30
+   ipv6 address 2404::1/64
+!
+interface Loopback0
+   ip address 10.40.5.1/32
+!
+interface Management0
+   ip address 172.20.20.2/24
+   ipv6 address 2001:172:20:20::2/64
+!
+ip routing
+!
+ipv6 unicast-routing
+!
+router bgp 65005
+   router-id 10.40.5.1
+   maximum-paths 2
+   neighbor 10.40.0.1 remote-as 65001
+   neighbor 10.40.0.6 remote-as 65001
+   neighbor 2402::1 remote-as 65001
+   neighbor 2403::1 remote-as 65001
+   !
+   address-family ipv4
+      network 1.1.1.0/30
+      network 10.40.5.1/32
+   !
+   address-family ipv6
+      neighbor 2402::1 activate
+      neighbor 2403::1 activate
+      network 2404::/64
+!
+end

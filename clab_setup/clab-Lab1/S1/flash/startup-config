@@ -1,0 +1,70 @@
+! Startup-config last modified at Sat Jan  4 19:45:05 2025 by root
+! device: S1 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
+!
+no aaa root
+!
+username admin role network-admin secret sha512 $6$8hgt7x17Hgs3.JO.$r9wya2rhcmuc7a98mlRiRXme3z1DVioJZ.NVwYY6/B22BMlCk9BG43Se7UOWzY4T3okmOTBbgVovELFZxaIn8.
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+logging host 10.100.0.5
+!
+hostname S1
+!
+snmp-server community NMAS ro
+snmp-server host 10.100.0.5 version 2c NMAS
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vlan 10
+   name HOST_10
+!
+vlan 20
+   name HOST_20
+!
+vlan 30
+   name HOST_30
+!
+vlan 200
+   name MGMT
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+management api gnmi
+   transport grpc def
+!
+management api netconf
+   transport ssh def
+!
+interface Ethernet1
+   switchport mode trunk
+!
+interface Ethernet2
+   switchport mode trunk
+!
+interface Ethernet3
+   switchport access vlan 10
+!
+interface Ethernet4
+   switchport access vlan 20
+!
+interface Management0
+   ip address 172.20.20.15/24
+   ipv6 address 2001:172:20:20::f/64
+!
+interface Vlan200
+   ip address 10.200.0.1/24
+!
+no ip routing
+!
+ip route 0.0.0.0/0 10.200.0.3
+!
+end

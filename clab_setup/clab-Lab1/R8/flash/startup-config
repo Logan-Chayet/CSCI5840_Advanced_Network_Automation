@@ -1,0 +1,40 @@
+! Startup-config last modified at Sat Jan  4 19:45:29 2025 by root
+! device: R8 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
+!
+no aaa root
+!
+username admin role network-admin secret sha512 $6$5iDLLZgCvl0vj37q$R6q1AjVb5iPQiTUQ5oIxB.O10uqx6hfzkz9DkbqCmBXG7VXwYng3H1.7qDLs8s9dC5V2ZV5PX28hmVMIBI2fW.
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname R8
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+interface Ethernet1
+   mac-address a2:b2:a1:b1:c3:c3
+   no switchport
+!
+interface Ethernet2
+!
+interface Management0
+   ip address 172.20.20.21/24
+   ipv6 address 2001:172:20:20::15/64
+!
+ip routing
+!
+ipv6 unicast-routing
+!
+ip route 10.100.0.0/24 10.40.200.1
+!
+end

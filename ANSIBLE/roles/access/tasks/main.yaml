@@ -1,3 +1,3 @@
 - name: Access Switch Config
-  template: src=edge.j2 dest=/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/ANSIBLE/CFGS/{{ devices.hostname }}.txt
+  template: src=edge.j2 dest=/home/student/Documents/CSCI5840_Advanced_Network_Automation/ANSIBLE/CFGS/{{ devices.hostname }}.txt
   with_items: "{{ devices }}"

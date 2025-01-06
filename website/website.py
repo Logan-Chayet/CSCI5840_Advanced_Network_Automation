@@ -1,10 +1,12 @@
 from flask import Flask,render_template,request
 import yaml
-import playbookCreation
 import os
 import csv
 import subprocess
+import sys
+sys.path.append("../scripts")
 import troubleshooting
+import playbookCreation
 
 app = Flask(__name__)
 
@@ -19,7 +21,7 @@ def edge_config():
         yaml_output = playbookCreation.createEdge() 
         print(yaml_output)
         
-        os.system("ansible-playbook ANSIBLE/site.yaml --tags edge")
+        os.system("ansible-playbook ../ANSIBLE/site.yaml --tags edge")
         
         config_output = playbookCreation.sendConfig()
 
@@ -34,7 +36,7 @@ def core_config():
         yaml_output = playbookCreation.createCore()
         print(yaml_output)
 
-        os.system("ansible-playbook ANSIBLE/site.yaml --tags core")
+        os.system("ansible-playbook ../ANSIBLE/site.yaml --tags core")
 
         config_output = playbookCreation.sendConfig()
 
@@ -49,7 +51,7 @@ def access_config():
         yaml_output = playbookCreation.createAccess()
         print(yaml_output)
 
-        os.system("ansible-playbook ANSIBLE/site.yaml --tags access")
+        os.system("ansible-playbook ../ANSIBLE/site.yaml --tags access")
 
         config_output = playbookCreation.sendConfig()
 

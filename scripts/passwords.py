@@ -70,9 +70,9 @@ def configure_arista_device(hostname, username, password, ip, config_commands):
 def change_passwords(devices):
     for i in devices:
         user_pass = create_user_pass()
-        update_router_credentials("pass_file.csv", i, user_pass[0], user_pass[1])
+        update_router_credentials("../data/pass_file.csv", i, user_pass[0], user_pass[1])
     
-        with open("devices.csv", mode='r') as file:
+        with open("../data/devices.csv", mode='r') as file:
             reader = csv.reader(file)
 
             # Iterate through each row in the CSV

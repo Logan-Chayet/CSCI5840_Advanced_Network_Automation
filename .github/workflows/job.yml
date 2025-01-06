@@ -24,16 +24,16 @@ jobs:
       - name: Stage 1 Check and Fixing Violations 
         run: |
           echo Checking for errors......
-          pylint --fail-under=5 /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/playbookCreation.py
+          pylint --fail-under=5 /home/student/Documents/CSCI5840_Advanced_Network_Automation/scripts/playbookCreation.py
 
       - name: Stage 2 Unit Test Basic Network Connectivity
         run: |
           echo Testing......
-          python3 /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/github_actions.py
+          python3 /home/student/Documents/CSCI5840_Advanced_Network_Automation/scripts/github_actions.py
 
       - name: Stage 3 Unit Test Code Coverage of Automation Code
         run: |
           echo Testing......
-          python3 /home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab7/unit_tests.py
+          python3 /home/student/Documents/CSCI5840_Advanced_Network_Automation/scripts/unit_tests.py
 
 

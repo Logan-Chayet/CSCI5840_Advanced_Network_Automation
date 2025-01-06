@@ -107,7 +107,7 @@ def cpu_test():
 #getTraps()
 SNMP_count +=1
 def traps_test():
-    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab2/traps.pcap"
+    path = "../monitoring/traps.pcap"
 
     check_file = os.path.isfile(path)
 
@@ -119,7 +119,7 @@ def traps_test():
 #getSyslog()
 SNMP_count +=1
 def syslog_test():
-    file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab2/traps.pcap"
+    file = "../monitoring/traps.pcap"
     cap = pyshark.FileCapture(file)
     traps = []
     i = 1
@@ -144,7 +144,7 @@ def create_user_pass_test():
 
 passwords_count +=1
 def update_router_credentials_test():
-    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/pass_file.csv"
+    path = "../data/pass_file.csv"
 
     check_file = os.path.isfile(path)
 
@@ -159,7 +159,7 @@ def configure_arista_device_test():
     username = ""
     password = ""
     ip = ""
-    csv_filename = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/pass_file.csv"
+    csv_filename = "../data/pass_file.csv"
     with open(csv_filename, mode='r') as file:
         reader = csv.reader(file)
         header = next(reader)  # Save the header row
@@ -180,7 +180,7 @@ def configure_arista_device_test():
 
 passwords_count +=1
 def change_passwords_test():
-    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/pass_file.csv"
+    path = "../data/pass_file.csv"
 
     check_file = os.path.isfile(path)
 
@@ -192,7 +192,7 @@ def change_passwords_test():
 #Lab4/playbookCreation.py
 playbookCreation_count +=1
 def createAccess_test():
-    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/ANSIBLE/roles/access/vars/main.yaml"
+    path = "../ANSIBLE/roles/access/vars/main.yaml"
 
     check_file = os.path.isfile(path)
 
@@ -203,7 +203,7 @@ def createAccess_test():
 
 playbookCreation_count +=1
 def createAccess_test():
-    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/ANSIBLE/roles/access/vars/main.yaml"
+    path = "../ANSIBLE/roles/access/vars/main.yaml"
 
     check_file = os.path.isfile(path)
 
@@ -214,7 +214,7 @@ def createAccess_test():
 
 playbookCreation_count +=1
 def createCore_test():
-    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/ANSIBLE/roles/core/vars/main.yaml"
+    path = "../ANSIBLE/roles/core/vars/main.yaml"
 
     check_file = os.path.isfile(path)
 
@@ -225,7 +225,7 @@ def createCore_test():
 
 playbookCreation_count +=1
 def createEdge_test():
-    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/ANSIBLE/roles/edge/vars/main.yaml"
+    path = "../ANSIBLE/roles/edge/vars/main.yaml"
 
     check_file = os.path.isfile(path)
 
@@ -236,7 +236,7 @@ def createEdge_test():
 
 playbookCreation_count +=1
 def get_neighborships_test():
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../data/devices.csv"
     hostname = "R4"
     command = "show ip bgp"
     mgmt_ip = ""
@@ -267,7 +267,7 @@ def get_neighborships_test():
 
 playbookCreation_count +=1
 def get_route_table_test():
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../data/devices.csv"
     hostname = "S3"
     mgmt_ip = ""
     username = ""
@@ -300,7 +300,7 @@ def get_route_table_test():
 
 playbookCreation_count +=1
 def get_cpu_test():
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../data/devices.csv"
     hostname = "R1"
     mgmt_ip = ""
     username = ""
@@ -330,7 +330,7 @@ def get_cpu_test():
 
 playbookCreation_count +=1
 def get_ip_connectivity_test():
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../data/devices.csv"
     hostname = "R1"
     src_ip = "21.0.0.2"
     dst_ip = "1.1.1.2"
@@ -371,7 +371,7 @@ def get_ip_connectivity_test():
 
 playbookCreation_count +=1
 def sshInfo_test():
-    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    path = "../data/devices.csv"
 
     check_file = os.path.isfile(path)
 
@@ -391,7 +391,7 @@ def ping_test(host):
 def network_ping_test():
     ping_dict = {}
     fail=0
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../data/devices.csv"
     with open(csv_file, "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
@@ -413,7 +413,7 @@ def network_ping_test():
 
 troubleshooting_count +=1
 def pcap_test():
-    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/traps.pcap"
+    path = "../monitoring/traps.pcap"
 
     check_file = os.path.isfile(path)
 
@@ -423,7 +423,7 @@ def pcap_test():
         return False
 troubleshooting_count +=1
 def devices_test():
-    path = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    path = "../data/devices.csv"
 
     check_file = os.path.isfile(path)
 
@@ -480,13 +480,13 @@ class routerTests(unittest.TestCase):
 
 if __name__ == '__main__':
     data = [
-            {"name": "SNMP.py", "count": SNMP_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab2/SNMP.py")},
-            {"name": "NETCONF.py", "count": NETCONF_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab2/NETCONF.py")},
-            {"name": "passwords.py", "count": passwords_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/passwords.py")},
-            {"name": "playbookCreation.py", "count": playbookCreation_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/playbookCreation.py")},
-            {"name": "troubleshooting.py", "count": troubleshooting_count, "total": count_functions_in_file("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/troubleshooting.py")}
+            {"name": "SNMP.py", "count": SNMP_count, "total": count_functions_in_file("../scripts/SNMP.py")},
+            {"name": "NETCONF.py", "count": NETCONF_count, "total": count_functions_in_file("../scripts/NETCONF.py")},
+            {"name": "passwords.py", "count": passwords_count, "total": count_functions_in_file("../scripts/passwords.py")},
+            {"name": "playbookCreation.py", "count": playbookCreation_count, "total": count_functions_in_file("../scripts/playbookCreation.py")},
+            {"name": "troubleshooting.py", "count": troubleshooting_count, "total": count_functions_in_file("../scripts/troubleshooting.py")}
         ]
-    with open("/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab7/counts.csv", mode="w", newline="") as file:
+    with open("../data/counts.csv", mode="w", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=["name", "count", "total"])
         writer.writeheader()  # Write the header row
         writer.writerows(data)  # Write data rows

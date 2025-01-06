@@ -8,12 +8,12 @@ import csv
 from netmiko import ConnectHandler
 
 def getSyslog():
-    file = "traps.pcap"
+    file = "../scripts/traps.pcap"
     cap = pyshark.FileCapture(file)
     traps = []
     i = 1
     field_names = ['ID', 'Router', 'Message', 'Level']
-    with open('Syslog.csv', 'w') as f_object:
+    with open('../data/Syslog.csv', 'w') as f_object:
         for packet in cap:
             dictwriter_object = DictWriter(f_object, field_names)
             if 'Syslog' in packet and packet.Syslog.level <= "5":
@@ -56,7 +56,7 @@ def extract_interface_states(csv_file):
 
 
 def sshInfo():
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../data/devices.csv"
     data = {}
 
     with open(csv_file, "r") as file:
@@ -111,13 +111,13 @@ def config_interface(ip, user, password, interface):
 
 def interface_no_shut(interface, hostname):
     routers = sshInfo()
-    extract_interface_states("Syslog.csv")
+    extract_interface_states("../data/Syslog.csv")
     for i in routers:
         if hostname == i:
             config_interface(routers[i]['ip'], routers[i]['username'], routers[i]['password'], interface)
 
 def find_dst_ip(hostname, interface):
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../data/devices.csv"
 
     routers = sshInfo()
     for i in routers:
@@ -152,7 +152,7 @@ def find_dst_ip(hostname, interface):
 
 
 def get_ip_connectivity(hostname, interface):
-    csv_file = "/home/student/Documents/CSCI5840_Advanced_Network_Automation/Lab4/devices.csv"
+    csv_file = "../data/devices.csv"
     dst_ip = find_dst_ip(hostname, interface)
     devices = ["R1", "R2", "R3", "R4"]
     routers = sshInfo()
@@ -193,7 +193,7 @@ def get_ip_connectivity(hostname, interface):
 def fix_interface_state():
     getSyslog()
     seen = set()
-    data = extract_interface_states("Syslog.csv")
+    data = extract_interface_states("../data/Syslog.csv")
 
     logs = []
 
@@ -209,7 +209,7 @@ def fix_interface_state():
     time.sleep(1)
     getSyslog()
 
-    data_after = extract_interface_states("Syslog.csv")
+    data_after = extract_interface_states("../data/Syslog.csv")
     seen_after = set()
     logs.append("Now checking in Syslogs that interface is up\n")
     for entry in data_after:

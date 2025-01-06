@@ -1,9 +1,10 @@
-! Startup-config last modified at Sat Jan  4 19:44:01 2025 by root
+! Startup-config last modified at Sun Jan  5 21:46:40 2025 by admin
 ! device: R1 (cEOSLab, EOS-4.32.0F-36401836.4320F (engineering build))
 !
 no aaa root
 !
 username admin role network-admin secret sha512 $6$5bAuYiwHmAslG.9i$xG.RB6tKOaAfnqaxi1pp6h4wxa.V1KNWo8yPH2eeVgGJW0Sp0XWBNSvObDuAi3ePrEiJnZZ2QBJcYrUcesFYH/
+username waH6bXd3oF privilege 15 secret sha512 $6$P7fN8APEL/WKYs3G$9GTKdcM9L9mMveSdjqnUVrQjGYqrQ4kSBH7nfW8nf48uR0YNzRoboacOlmAoHbF7Ju9OfdIk/iHTrDbRaChJR0
 !
 ip dhcp relay information option
 !

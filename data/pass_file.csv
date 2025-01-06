@@ -1,9 +1,9 @@
 hostname,device_type,ip,username,password
-R1,eos,10.100.0.6,f50TX34VDe,CY6etkwfSt
-R2,eos,10.100.0.7,u9F7HTgQ65,4RcTFJgAMJ
-R3,eos,10.100.0.8,pSP6MxYXor,QfghyiEQdy
-R4,eos,10.100.0.9,Wg4iz2i9uz,6lzf9wloiF
-S1,eos,10.200.0.1,BUOXGI49VP,eWkj2auPpb
-S2,eos,10.200.0.2,kzzTfSUXuM,VfKkH1ZIZ1
-S3,eos,10.100.0.3,OEoyPhBOZL,cLmelvLLdc
-S4,eos,10.100.0.4,IaqerY0BEA,wDIlRQAXXA
+R1,eos,10.100.0.6,waH6bXd3oF,VqTxNbPDnF
+R2,eos,10.100.0.7,HRLKfKufcg,86teMa7Q92
+R3,eos,10.100.0.8,oUGn8RLkL8,auqFBWI5wO
+R4,eos,10.100.0.9,SZUwKRuj8i,vAdeSrrOrY
+S1,eos,10.200.0.1,cJDDQ6QHlG,AixqrsOhwl
+S2,eos,10.200.0.2,aE4BLe3ObT,rXWLCMMUq6
+S3,eos,10.100.0.3,NSrmuFgRsT,KGn5bAe2sS
+S4,eos,10.100.0.4,1RASei4evh,gtLesetC3x

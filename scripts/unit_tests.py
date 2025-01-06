@@ -13,7 +13,6 @@ from ncclient import manager
 from csv import DictWriter
 import csv
 import ast
-import passwords
 #from count_functions import count_functions_in_file
 
 NETCONF_count = 0
@@ -156,8 +155,6 @@ def update_router_credentials_test():
 
 passwords_count +=1
 def configure_arista_device_test():
-    devices = ["R3"]
-    passwords.change_passwords(devices)
     router_hostname = "R3"
     username = ""
     password = ""

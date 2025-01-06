@@ -81,6 +81,12 @@ def change_passwords(devices):
                     # Update username and password if hostname matches
                     configure_arista_device(row[0], row[3], row[4], row[2], "username "+user_pass[0]+" privilege 15 secret "+user_pass[1])
 
-devices = ["R1", "R2", "R3", "R4", "S1", "S2", "S3", "S4"]
-change_passwords(devices)
+def main():
+    devices = ["R1", "R2", "R3", "R4", "S1", "S2", "S3", "S4"]
+    change_passwords(devices)
+
+if __name__ == "__main__":
+    main()
+
+
 #update_router_credentials("devices.csv", "R2", "test", "test_password")
